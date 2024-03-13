@@ -10,4 +10,4 @@ app = Flask(__name__)
 @app.route("/", methods= ["GET", 'POST'])
 def landing():
     
-    return render_template("landing.page.html.jinja")
+    return render_template("landing-page.html.jinja")
