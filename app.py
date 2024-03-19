@@ -8,8 +8,13 @@ from pprint import pprint as print
 app = Flask(__name__)
 
 @app.route("/", methods= ["GET", 'POST'])
-def landing():
+def home():
     
+    return render_template("index-page.html.jinja")
+
+
+@app.route("/land", methods= ["GET", 'POST'])
+def landing():
     return render_template("landing-page.html.jinja")
 
 @app.route("/contact", methods= ["GET", 'POST'])
