@@ -7,6 +7,16 @@ from pprint import pprint as print
 
 app = Flask(__name__)
 
+def connect_db():
+    return pymysql.connect(
+        host="10.100.33.60",
+        user="achen",
+        password="232126110",
+        database="tutoria",
+        cursorclass=pymysql.cursors.DictCursor,
+        autocommit=True
+    )
+
 @app.route("/", methods= ["GET", 'POST'])
 def home():
     
@@ -16,3 +26,8 @@ def home():
 @app.route("/land", methods= ["GET", 'POST'])
 def landing():
     return render_template("landing-page.html.jinja")
+
+
+@app.route("/signup-tutor", methods= ["GET", 'POST'])
+def signup_tutor():
+    return render_template("signup-tutor.html.jinja")
