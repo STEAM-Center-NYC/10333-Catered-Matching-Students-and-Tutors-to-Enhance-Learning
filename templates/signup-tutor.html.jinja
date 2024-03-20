@@ -89,11 +89,11 @@ https://templatemo.com/tm-586-scholar
                         <div>
 
                             <h1 class="center padding-bottom">Sign Up for Tutors</h1>
-                            <form class='ms-auto me-auto'>
+                            <form class='ms-auto me-auto' method="POST">
 
                                 <div class="col-md-9 ms-auto me-auto">
                                     <label for="inputEmail4" class="form-label">Full Name</label>
-                                    <input  class="form-control center " id="inputEmail4" name="name">
+                                    <input class="form-control" id="inputEmail4" name="name">
                                 </div>
                                 <div class="col-md-9 ms-auto me-auto">
                                     <label for="inputPassword4" class="form-label">Email</label>
@@ -101,20 +101,33 @@ https://templatemo.com/tm-586-scholar
                                 </div>
                                 <div class="col-9 ms-auto me-auto">
                                     <label for="inputAddress" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="inputAddress"
-                                        placeholder="" name="password">
+                                    <input type="password" class="form-control" id="inputAddress" placeholder=""
+                                        name="password">
                                 </div>
-                              <div class="col-9 ms-auto me-auto padding-top">
-    <label for="inlineFormSelectPref">Gender</label>
-    <select class="form-select" id="inlineFormSelectPref">
-      <option selected>Choose...</option>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-      <option value="other">Other</option>
-    </select>
-  </div>
+                                <div class="col-9 ms-auto me-auto padding-top">
+                                    <label for="inlineFormSelectPref">Gender</label>
+                                    <select class="form-select" id="inlineFormSelectPref" name="gender">
+                                        <option selected>Choose...</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
 
+                                </div>
 
+                                <div class="col-9 ms-auto me-auto padding-top">
+                                    <label for="inlineFormSelectPref">Educational Level</label>
+                                    <select class="form-select" id="inlineFormSelectPref" name="education">
+                                        <option selected>Choose...</option>
+                                        <option value="Undergraduate">Undergraduate</option>
+                                        <option value="Graduate">Graduate</option>
+                                        <option value="No Degree">No degree</option>
+                                    </select>
+                                    <div class="col-12 padding-top">
+                                    <button type="submit" class="btn btn-primary">Sign up</button>
+                                </div>
+                                </div>
+                               
 
 
 
