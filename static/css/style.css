@@ -18,3 +18,20 @@ padding-bottom:20px;
 
 
 }
+
+
+.circle-btn{
+    height: 102px;
+    width: 102px;
+    border-radius: 50%;
+    background-color: red;
+
+}
+
+.sticky{
+
+
+position: sticky;
+
+
+}
