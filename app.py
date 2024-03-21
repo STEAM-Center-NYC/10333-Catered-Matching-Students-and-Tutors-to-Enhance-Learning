@@ -58,3 +58,8 @@ def signup_tutor():
 
 
     return render_template("signup-tutor.html.jinja")
+
+
+@app.route("/match", methods= ["GET", 'POST'])
+def matching():
+    return render_template("match.html.jinja")
