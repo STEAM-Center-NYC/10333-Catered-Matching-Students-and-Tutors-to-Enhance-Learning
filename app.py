@@ -3,20 +3,23 @@ from flask import render_template,request, redirect
 import pymysql
 import pymysql.cursors
 import flask_login
+from dynaconf import Dynaconf
 
-
+settings = Dynaconf(
+    settings_file =  ['settings.toml']
+)
 
 
 app = Flask(__name__)
 
 def connect_db():
     return pymysql.connect(
-    database = "tutoria",
-    user = "fmuntasir2",
-    password = "239442965",
-    host = "10.100.33.60",
-    cursorclass = pymysql.cursors.DictCursor,
-    autocommit=True
+        host="10.100.33.60",
+        user= settings.db_user,
+        password= settings.db_pass,
+        database= settings.db_name,
+        cursorclass=pymysql.cursors.DictCursor,
+        autocommit=True
     )
 
 
@@ -79,5 +82,7 @@ def signup_tutor():
         get_db().commit()
     return render_template("signup-tutor.html.jinja")
 
-  
-   
+
+@app.route("/match", methods= ["GET", 'POST'])
+def matching():
+    return render_template("match.html.jinja")
