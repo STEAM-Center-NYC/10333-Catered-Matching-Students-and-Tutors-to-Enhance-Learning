@@ -313,8 +313,9 @@ Header Style
 }
 
 .header-area .main-nav {
-  background: transparent;
-  display: flex
+  background: #7a6ad8;
+  display: flex;
+  border-radius: 23px;
 }
 
 .header-area .main-nav .logo {
@@ -423,7 +424,7 @@ Header Style
 }
 .header-area .main-nav .nav li a.active {
   color: #fff;
-  background-color: rgba(255, 255, 255, 0.10);
+  background-color: #7a6ad8;
   opacity: 1;
 }
 
@@ -432,7 +433,7 @@ Header Style
 }
 .background-header .main-nav .nav li a.active {
   color: #fff;
-  background-color: rgba(255, 255, 255, 0.10);
+  background-color: #7a6ad8;
   opacity: 1;
 }
 
@@ -668,7 +669,6 @@ Banner Style
 
 .main-banner {
   background-image: url(../images/banner-bg.jpg);
-  background-position: right bottom;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 170px 0px 120px 0px;

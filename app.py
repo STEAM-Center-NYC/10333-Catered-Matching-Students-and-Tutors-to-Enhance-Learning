@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, redirect
-from dynaconf import Dynaconf
 import pymysql
 import pymysql.cursors
-from pprint import pprint as print
+import flask_login
+from dynaconf import Dynaconf
 
+settings = Dynaconf(
+    settings_file =  ['settings.toml']
+)
 
 settings = Dynaconf(
     settings_file = ['settings.toml']
@@ -22,6 +25,29 @@ def connect_db():
     )
 
 
+def connect_db():
+    return pymysql.connect(
+        host="10.100.33.60",
+        user= settings.db_user,
+        password= settings.db_pass,
+        database= settings.db_name,
+        cursorclass=pymysql.cursors.DictCursor,
+        autocommit=True
+    )
+
+
+def get_db():
+    '''Opens a new database connection per request.'''        
+    if not hasattr(g, 'db'):
+        g.db = connect_db()
+    return g.db    
+
+@app.teardown_appcontext
+def close_db(error):
+    '''Closes the database connection at the end of request.'''    
+    if hasattr(g, 'db'):
+        g.db.close() 
+
 @app.route("/", methods= ["GET", 'POST'])
 def home():
     
@@ -32,8 +58,3 @@ def home():
 def landing():
 
     return render_template("landing-page.html.jinja")
-
-@app.route("/signin", methods= ["GET", 'POST'])
-def SignIn():
-
-    return render_template("sign-in-page.html.jinja")
