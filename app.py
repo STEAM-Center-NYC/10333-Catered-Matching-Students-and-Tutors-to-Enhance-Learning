@@ -22,6 +22,7 @@ def connect_db():
         autocommit=True
     )
 
+
 def get_db():
     '''Opens a new database connection per request.'''        
     if not hasattr(g, 'db'):
@@ -34,7 +35,6 @@ def close_db(error):
     if hasattr(g, 'db'):
         g.db.close() 
 
-
 @app.route("/", methods= ["GET", 'POST'])
 def home():
     
@@ -45,6 +45,28 @@ def home():
 def landing():
     return render_template("landing-page.html.jinja")
 
+@app.route("/contact", methods= ["GET", 'POST'])
+def contact():
+    
+    return render_template("contact-page.html.jinja")
+
+
+
+
+@app.route("/signup-students", methods= ["GET", 'POST'])
+def signup_student():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        gender = request.form['gender']
+        grade = request.form['grade']
+        cursor = get_db().cursor()
+        cursor.execute(f"INSERT INTO `students`(`student-name` , `student-email`, `password`, `gender`, `grade-level`) VALUES('{name}', '{email}', '{password}', '{gender}', '{grade}')")      
+        cursor.close()
+        get_db().commit()
+
+    return render_template("signup-students.html.jinja")
 
 @app.route("/signup-tutor", methods= ["GET", 'POST'])
 def signup_tutor():
@@ -58,8 +80,6 @@ def signup_tutor():
         cursor.execute(f"INSERT INTO `tutors`(`name` , `email`, `password`, `gender`,`education-level`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}')")         
         cursor.close()
         get_db().commit()
-
-
     return render_template("signup-tutor.html.jinja")
 
 
