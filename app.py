@@ -78,7 +78,7 @@ def signup_tutor():
         education = request.form['education']
         subject = request.form['subject']
         cursor = get_db().cursor()
-        cursor.execute(f"INSERT INTO `tutors`(`name` , `email`, `password`, `gender`,`education-level`, `subject`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}')")         
+        cursor.execute(f"INSERT INTO `tutors`(`name` , `email`, `password`, `gender`,`education-level`, `subject`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}')")             
         cursor.close()
         get_db().commit()
     return render_template("signup-tutor.html.jinja")

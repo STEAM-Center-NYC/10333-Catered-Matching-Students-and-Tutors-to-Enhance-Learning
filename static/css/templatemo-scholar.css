@@ -681,6 +681,13 @@ Banner Style
   min-height: 100vh;
 }
 
+.main-bannera {
+  background-image: url(../images/banner-bg.jpg);
+  background-repeat: no-repeat;
+  background-size:auto;
+  padding: 170px 0px 120px 0px;
+}
+
 .main-banner .item-1 {
   background-image: url(../images/banner-item-01.jpg);
 }
