@@ -62,7 +62,7 @@ https://templatemo.com/tm-586-scholar
                     <ul class="nav">
                       
                       
-       
+                     
                       
                       <li class="scroll-to-section"><a href="/" class="active">Home</a></li>
                       <li class="scroll-to-section"><a href="#contact">Contacts</a></li>
@@ -78,27 +78,47 @@ https://templatemo.com/tm-586-scholar
   </header>
   <!-- ***** Header Area End ***** -->
 
-  <div class="main-banner" id="top">
+  <div class="main-bannera" id="top">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-9 me-auto ms-auto">
           
+          <form method="POST">
+           <label for="inlineFormSelectPref">Subject of Proficiency</label>
+                                    <select class="form-select" id="inlineFormSelectPref" name="subject">
+                                        <option selected >Choose...</option>
+                                        <option value="Math">Math</option>
+                                        <option value="Science">Science</option>
+                                        <option value="English">English</option>
+                                        <option value="Social Studies">Social Studies</option>
+                                    </select>
+                                    <div class="col-12 padding-top padding-bottom">
+                                    <button type="submit" class="btn btn-primary">Match</button>
+                                    </div>
+          </form>        
+          {% for list in tutor_list %}
+            <div class="col-9 container text-center padding-bottom wow animate__animated  animate__backInRight">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text"> {{list['name']}} </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                            </div>
+                            <small class="text-body-secondary">{{list['certification']}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {%endfor%}
+  
+
         </div>
       </div>
     </div>
   </div>
 
-  
-
-
-  <footer>
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Copyright © 2036 Scholar Organization. All rights reserved. &nbsp;&nbsp;&nbsp; Design: <a href="https://templatemo.com" rel="nofollow" target="_blank">TemplateMo</a></p>
-      </div>
-    </div>
-  </footer>
-
+    
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
   <script src="/static/vendor/jquery/jquery.min.js"></script>

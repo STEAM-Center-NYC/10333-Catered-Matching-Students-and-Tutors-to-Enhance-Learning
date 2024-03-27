@@ -78,7 +78,7 @@ def signup_tutor():
         education = request.form['education']
         subject = request.form['subject']
         cursor = get_db().cursor()
-        cursor.execute(f"INSERT INTO `tutors`(`name` , `email`, `password`, `gender`,`education-level` ,`subject`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}', '{subject}')")         
+        cursor.execute(f"INSERT INTO `tutors`(`name` , `email`, `password`, `gender`,`education-level`, `subject`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}')")             
         cursor.close()
         get_db().commit()
     return render_template("signup-tutor.html.jinja")
@@ -86,4 +86,17 @@ def signup_tutor():
 
 @app.route("/match", methods= ["GET", 'POST'])
 def matching():
-    return render_template("match.html.jinja")
+    if request.method == 'POST':
+        subjects = request.form['subject']
+    
+        cursor = get_db().cursor()
+        cursor.execute(f'SELECT * FROM `tutors` WHERE `subject` = "{subjects}"')
+        results = cursor.fetchall()
+        cursor.close()
+    else:
+        cursor = get_db().cursor()
+        cursor.execute(f'SELECT * FROM `tutors`')
+        results = cursor.fetchall()
+        cursor.close()
+
+    return render_template("match.html.jinja", tutor_list = results)
