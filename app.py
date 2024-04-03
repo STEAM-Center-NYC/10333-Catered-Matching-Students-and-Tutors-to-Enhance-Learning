@@ -2,10 +2,8 @@ from flask import Flask,g
 from flask import render_template,request, redirect
 import pymysql
 import pymysql.cursors
-import flask_login
 from dynaconf import Dynaconf
 import random
-import tkinter
 
 settings = Dynaconf(
     settings_file =  ['settings.toml']
@@ -59,21 +57,6 @@ def contact():
 
 
 
-@app.route("/signup-students", methods= ["GET", 'POST'])
-def signup_student():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
-        gender = request.form['gender']
-        grade = request.form['grade']
-        cursor = get_db().cursor()
-        cursor.execute(f"INSERT INTO `students`(`student-name` , `student-email`, `password`, `gender`, `grade-level`) VALUES('{name}', '{email}', '{password}', '{gender}', '{grade}')")      
-        cursor.close()
-        get_db().commit()
-
-    return render_template("signup-students.html.jinja")
-
 @app.route("/signup-tutor", methods= ["GET", 'POST'])
 def signup_tutor():
     if request.method == 'POST':
@@ -83,8 +66,9 @@ def signup_tutor():
         gender = request.form['gender']
         education = request.form['education']
         subject = request.form['subject']
+        role = request.form['role']
         cursor = get_db().cursor()
-        cursor.execute(f"INSERT INTO `tutors`(`name` , `email`, `password`, `gender`,`education-level`, `subject`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}')")             
+        cursor.execute(f"INSERT INTO `users`(`name` , `email`, `password`, `gender`,`education-level`, `subject`,`role`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}','{role}')")             
         cursor.close()
         get_db().commit()
     return render_template("signup-tutor.html.jinja")
