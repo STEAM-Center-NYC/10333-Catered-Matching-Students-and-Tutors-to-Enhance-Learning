@@ -84,7 +84,7 @@ https://templatemo.com/tm-586-scholar
         <div class="col-lg-9 me-auto ms-auto">
           
           <form method="POST">
-           <label for="inlineFormSelectPref">Subject of Proficiency</label>
+           <label for="inlineFormSelectPref">Subject of Need</label>
                                     <select class="form-select" id="inlineFormSelectPref" name="subject">
                                         <option selected >Choose...</option>
                                         <option value="Math">Math</option>
@@ -96,21 +96,21 @@ https://templatemo.com/tm-586-scholar
                                     <button type="submit" class="btn btn-primary">Match</button>
                                     </div>
           </form>        
-          {% for list in tutor_list %}
+          
             <div class="col-9 container text-center padding-bottom wow animate__animated  animate__backInRight">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <p class="card-text"> {{list['name']}} </p>
+                <div class="shadow-sm padding-top2">
+                    <div class="card-body card">
+                        <p class="card-text"> {{tutor_list['name']}} </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                             </div>
-                            <small class="text-body-secondary">{{list['certification']}}</small>
+                            <small class="text-body-secondary" id="subject">Subject: {{tutor_list['subject']}}</small>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {%endfor%}
+            
   
 
         </div>

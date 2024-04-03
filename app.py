@@ -4,6 +4,8 @@ import pymysql
 import pymysql.cursors
 import flask_login
 from dynaconf import Dynaconf
+import random
+import tkinter
 
 settings = Dynaconf(
     settings_file =  ['settings.toml']
@@ -11,6 +13,10 @@ settings = Dynaconf(
 
 
 app = Flask(__name__)
+
+
+
+
 
 def connect_db():
     return pymysql.connect(
@@ -84,14 +90,18 @@ def signup_tutor():
     return render_template("signup-tutor.html.jinja")
 
 
-@app.route("/match", methods= ["GET", 'POST'])
+@app.route("/match", methods= ["GET", 'POST'])  
 def matching():
     if request.method == 'POST':
         subjects = request.form['subject']
-    
+        """if subjects == 'Choose...':
+            
+            return render_template("match.html.jinja", tutor_list = results2)
+        else:"""
         cursor = get_db().cursor()
         cursor.execute(f'SELECT * FROM `tutors` WHERE `subject` = "{subjects}"')
         results = cursor.fetchall()
+        results2 = random.choice(results)
         cursor.close()
     else:
         cursor = get_db().cursor()
@@ -99,4 +109,8 @@ def matching():
         results = cursor.fetchall()
         cursor.close()
 
-    return render_template("match.html.jinja", tutor_list = results)
+    return render_template("match.html.jinja", tutor_list = results2)
+
+@app.route("/profile", methods=["GET","POST"])
+def profile():
+    return render_template("profile.html.jinja")
