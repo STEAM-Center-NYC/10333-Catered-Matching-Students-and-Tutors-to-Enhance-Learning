@@ -1,138 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <title></title> <!-- Bootstrap core CSS -->
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="/static/css/fontawesome.css">
+  <link rel="stylesheet" href="/static/css/templatemo-scholar.css">
+  <link rel="stylesheet" href="/static/css/owl.css">
+  <link rel="stylesheet" href="/static/css/animate.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+  <!-- TemplateMo 586 Scholar https://templatemo.com/tm-586-scholar -->
+</head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <title></title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="/static/css/fontawesome.css">
-    <link rel="stylesheet" href="/static/css/templatemo-scholar.css">
-    <link rel="stylesheet" href="/static/css/owl.css">
-    <link rel="stylesheet" href="/static/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
-
-TemplateMo 586 Scholar
-
-https://templatemo.com/tm-586-scholar
-
--->
-  </head>
-
-<body>
-
-  <!-- ***** Preloader Start ***** -->
+<body> <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+    <div class="preloader-inner"> <span class="dot"></span>
+      <div class="dots"> <span></span> <span></span> <span></span> </div>
     </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-
-  <!-- ***** Header Area Start ***** -->
+  </div> <!-- ***** Preloader End ***** --> <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <h1>Tutoria</h1>
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Serach Start ***** -->
-                    <div class="search-input">
-                      <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                        <i class="fa fa-search"></i>
-                      </form>
-                    </div>
-                    <!-- ***** Serach Start ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      
-                      <li class="scroll-to-section"><a href="#">Sign In</a></li>
-                     
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav"> <!-- ***** Logo Start ***** --> <a href="index.html" class="logo">
+              <h1>Tutoria</h1>
+            </a> <!-- ***** Logo End ***** --> <!-- ***** Serach Start ***** -->
+             <!-- ***** Serach Start ***** --> <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="#">Sign In</a></li>
+            </ul> <a class='menu-trigger'> <span>Menu</span> </a> <!-- ***** Menu End ***** -->
+          </nav>
         </div>
+      </div>
     </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
-
+  </header> <!-- ***** Header Area End ***** -->
   <div class="main-banner" id="top">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="owl-carousel owl-banner">
             <div class="item item-1">
-              <div class="header-text">
-                <span class="category">Online Learning</span>
+              <div class="header-text"> <span class="category">Online Learning</span>
                 <h2>With Tutoria Online Learning Is Easier Than Ever Before!</h2>
-                <p>Tutoria is an online educational turoting website 
-                where you can either register as a tutor to teach your specified filed or register as a student to get tutoring help!</p>
+                <p>Tutoria is an online educational turoting website where you can either register as a tutor to teach
+                  your specified filed or register as a student to get tutoring help!</p>
                 <div class="buttons">
-                  <div class="main-button">
-                    <a href="#">Register Now</a>
-                  </div>
-                  <div class="icon-button">
-                   
-                  </div>
+                  <div class="main-button"> <a href="signup-students.html.jinja">Register Now</a> </div>
+                  <div class="icon-button"> </div>
                 </div>
               </div>
             </div>
             <div class="item item-2">
-              <div class="header-text">
-                <span class="category">Become A teacher</span>
+              <div class="header-text"> <span class="category">Become A teacher</span>
                 <h2>How Do Teachers Apply?</h2>
-                <p> In our website teachers can apply by clicking our teacher sign up button where they will 
-                    be required to list the topics and 
-                   fields they can teach. Additionally teachers will put up
-                   their certifications and some more additional information that we require. 
-                   After that we will verify their credentials and information so we can make sure they can teach their subject properly.  </p>
+                <p> In our website teachers can apply by clicking our teacher sign up button where they will be required
+                  to list the topics and fields they can teach. Additionally teachers will put up their certifications
+                  and some more additional information that we require. After that we will verify their credentials and
+                  information so we can make sure they can teach their subject properly. </p>
                 <div class="buttons">
-                  <div class="main-button">
-                    <a href="#">Register Now</a>
-                  </div>
-                  <div class="icon-button">
-                    
-                  </div>
+                  <div class="main-button"> <a href="signup-students.html.jinja">Register Now</a> </div>
+                  <div class="icon-button"> </div>
                 </div>
               </div>
             </div>
             <div class="item item-3">
-              <div class="header-text">
-                <span class="category">How you get help</span>
+              <div class="header-text"> <span class="category">How you get help</span>
                 <h2>Our Matching System!</h2>
-                <p> In our Website in order for students to get a tutor they will go through a matching system 
-                where they will answer a few questions about what topic they need help with and then 
-                get matched up with a tutor that teaches that subject or topic the student needs help with.</p>
+                <p> In our Website in order for students to get a tutor they will go through a matching system where
+                  they will answer a few questions about what topic they need help with and then get matched up with a
+                  tutor that teaches that subject or topic the student needs help with.</p>
                 <div class="buttons">
-                  <div class="main-button">
-                    <a href="#">Register Now</a>
-                  </div>
-                  <div class="icon-button">
-                 
-                  </div>
+                  <div class="main-button"> <a href="signup-students.html.jinja">Register Now</a> </div>
+                  <div class="icon-button"> </div>
                 </div>
               </div>
             </div>
@@ -140,18 +83,19 @@ https://templatemo.com/tm-586-scholar
         </div>
       </div>
     </div>
-  </div>
-
-  
-
-  <!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
+  </div> <!-- Scripts --> <!-- Bootstrap core JavaScript -->
   <script src="/static/vendor/jquery/jquery.min.js"></script>
   <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="/static/js/isotope.min.js"></script>
   <script src="/static/js/owl-carousel.js"></script>
   <script src="/static/js/counter.js"></script>
+<<<<<<< HEAD
   <script src="/static/js/custom.js"></script>k
+=======
+  <script src="/static/js/custom.js"></script>
+</body>
 
-  </body>
+
+>>>>>>> origin/main
+
 </html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/static/css/fontawesome.css">
+    <link rel="stylesheet" href="/static/css/templatemo-scholar.css">
+    <link rel="stylesheet" href="/static/css/owl.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="/static/css/style.css">
+<!--
+
+TemplateMo 586 Scholar
+
+https://templatemo.com/tm-586-scholar
+
+-->
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <h1>Scholar</h1>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Serach Start ***** -->
+                
+                    <!-- ***** Serach Start ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      
+                      
+                     
+                      
+                      <li class="scroll-to-section"><a href="/" class="active">Home</a></li>
+                      <li class="scroll-to-section"><a href="#contact">Contacts</a></li>
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-bannera" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 me-auto ms-auto">
+          
+          <form method="POST">
+           <label for="inlineFormSelectPref">Subject of Need</label>
+                                    <select class="form-select" id="inlineFormSelectPref" name="subject">
+                                        <option selected >Choose...</option>
+                                        <option value="Math">Math</option>
+                                        <option value="Science">Science</option>
+                                        <option value="English">English</option>
+                                        <option value="Social Studies">Social Studies</option>
+                                    </select>
+                                    <div class="col-12 padding-top padding-bottom">
+                                    <button type="submit" class="btn btn-primary">Match</button>
+                                    </div>
+          </form>        
+          
+            <div class="col-9 container text-center padding-bottom wow animate__animated  animate__backInRight">
+                <div class="shadow-sm padding-top2">
+                    <div class="card-body card">
+                        <p class="card-text"> {{tutor_list['name']}} </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                            </div>
+                            <small class="text-body-secondary" id="subject">Subject: {{tutor_list['subject']}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+  
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/static/js/isotope.min.js"></script>
+  <script src="/static/js/owl-carousel.js"></script>
+  <script src="/static/js/counter.js"></script>
+  <script src="/static/js/custom.js"></script>
+
+  </body>
+</html>

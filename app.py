@@ -1,14 +1,50 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask,g
+from flask import render_template,request, redirect
 import pymysql
 import pymysql.cursors
-from pprint import pprint as print
+from dynaconf import Dynaconf
+import random
 
+settings = Dynaconf(
+    settings_file =  ['settings.toml']
+)
 
 
 
 app = Flask(__name__)
 
+<<<<<<< HEAD
 @app.route("/index", methods= ["GET", 'POST'])
+=======
+
+
+
+
+def connect_db():
+    return pymysql.connect(
+        host="10.100.33.60",
+        user= settings.db_user,
+        password= settings.db_pass,
+        database= settings.db_name,
+        cursorclass=pymysql.cursors.DictCursor,
+        autocommit=True
+    )
+
+
+def get_db():
+    '''Opens a new database connection per request.'''        
+    if not hasattr(g, 'db'):
+        g.db = connect_db()
+    return g.db    
+
+@app.teardown_appcontext
+def close_db(error):
+    '''Closes the database connection at the end of request.'''    
+    if hasattr(g, 'db'):
+        g.db.close() 
+
+@app.route("/", methods= ["GET", 'POST'])
+>>>>>>> origin/main
 def home():
     
     return render_template("index-page.html.jinja")
@@ -18,6 +54,7 @@ def home():
 def landing():
     return render_template("landing-page.html.jinja")
 
+<<<<<<< HEAD
 
 
 
@@ -108,3 +145,54 @@ def send_message():
 
 if __name__ == '__main__':
     app.run(debug=True)
+=======
+@app.route("/contact", methods= ["GET", 'POST'])
+def contact():
+    
+    return render_template("contact-page.html.jinja")
+
+
+
+
+@app.route("/signup-tutor", methods= ["GET", 'POST'])
+def signup_tutor():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        gender = request.form['gender']
+        education = request.form['education']
+        subject = request.form['subject']
+        role = request.form['role']
+        cursor = get_db().cursor()
+        cursor.execute(f"INSERT INTO `users`(`name` , `email`, `password`, `gender`,`education-level`, `subject`,`role`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}','{role}')")             
+        cursor.close()
+        get_db().commit()
+    return render_template("signup-tutor.html.jinja")
+
+
+@app.route("/match", methods= ["GET", 'POST'])  
+def matching():
+    if request.method == 'POST':
+        subjects = request.form['subject']
+        """if subjects == 'Choose...':
+            
+            return render_template("match.html.jinja", tutor_list = results2)
+        else:"""
+        cursor = get_db().cursor()
+        cursor.execute(f'SELECT * FROM `tutors` WHERE `subject` = "{subjects}"')
+        results = cursor.fetchall()
+        results2 = random.choice(results)
+        cursor.close()
+    else:
+        cursor = get_db().cursor()
+        cursor.execute(f'SELECT * FROM `tutors`')
+        results = cursor.fetchall()
+        cursor.close()
+
+    return render_template("match.html.jinja", tutor_list = results2)
+
+@app.route("/profile", methods=["GET","POST"])
+def profile():
+    return render_template("profile.html.jinja")
+>>>>>>> origin/main

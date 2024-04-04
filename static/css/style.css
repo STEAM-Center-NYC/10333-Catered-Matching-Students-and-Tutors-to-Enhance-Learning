@@ -1,0 +1,60 @@
+.center {
+
+text-align: center;
+
+}
+
+.padding-top{
+
+padding-top:18px;
+
+}
+
+
+.padding-bottom{
+
+padding-bottom:20px;
+
+
+
+}
+
+
+.circle-btn{
+    height: 102px;
+    width: 102px;
+    border-radius: 50%;
+    background-color: red;
+
+}
+
+.sticky{
+
+
+position: sticky;
+
+
+}
+
+
+.card{
+
+
+min-height: 300px;
+
+
+
+}
+
+.padding-top2{
+
+    padding-top:30px;
+    
+}
+
+#subject{
+
+padding-top:35%;
+
+
+}
