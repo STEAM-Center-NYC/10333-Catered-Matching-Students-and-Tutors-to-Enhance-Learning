@@ -57,7 +57,7 @@ def contact():
 
 
 
-@app.route("/signup-tutor", methods= ["GET", 'POST'])
+@app.route("/signup", methods= ["GET", 'POST'])
 def signup_tutor():
     if request.method == 'POST':
         name = request.form['name']
@@ -68,10 +68,10 @@ def signup_tutor():
         subject = request.form['subject']
         role = request.form['role']
         cursor = get_db().cursor()
-        cursor.execute(f"INSERT INTO `users`(`name` , `email`, `password`, `gender`,`education-level`, `subject`,`role`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}','{role}')")             
+        cursor.execute(f"INSERT INTO `users`(`name` , `email`, `password`, `gender`,`educational_level`, `subject`,`role`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}','{role}')")             
         cursor.close()
         get_db().commit()
-    return render_template("signup-tutor.html.jinja")
+    return render_template("signup.html.jinja")
 
 
 @app.route("/match", methods= ["GET", 'POST'])  
@@ -83,9 +83,9 @@ def matching():
             return render_template("match.html.jinja", tutor_list = results2)
         else:"""
         cursor = get_db().cursor()
-        cursor.execute(f'SELECT * FROM `tutors` WHERE `subject` = "{subjects}"')
+        cursor.execute(f'SELECT * FROM `users` WHERE `subject` = "{subjects}" AND `role` = "tutor"')
         results = cursor.fetchall()
-        results2 = random.choice(results)
+        results = random.choice(results)
         cursor.close()
     else:
         cursor = get_db().cursor()
@@ -93,7 +93,7 @@ def matching():
         results = cursor.fetchall()
         cursor.close()
 
-    return render_template("match.html.jinja", tutor_list = results2)
+    return render_template("match.html.jinja", tutor_list = results)
 
 @app.route("/profile", methods=["GET","POST"])
 def profile():
