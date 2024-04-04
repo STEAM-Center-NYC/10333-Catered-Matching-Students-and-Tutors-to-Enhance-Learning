@@ -130,8 +130,8 @@ body {
 }
 
 .section {
-  padding-top: 30px;
-  margin-top: 120px;
+  padding-top:30px;
+  margin-top: 50px;
 }
 
 .section-heading {
@@ -678,14 +678,12 @@ Banner Style
   background-repeat: no-repeat;
   background-size: auto;
   padding: 170px 0px 120px 0px;
-  min-height: 100vh;
+ 
 }
 
-.main-bannera {
-  background-image: url(../images/banner-bg.jpg);
-  background-repeat: no-repeat;
-  background-size:auto;
-  padding: 170px 0px 120px 0px;
+.back-img {
+background-image: url(/static/images/background.png);
+
 }
 
 .main-banner .item-1 {
@@ -1844,7 +1842,7 @@ body {
     display: none;
   }
   .events {
-    margin-top: 80px;
+    margin-top: 80pxpx;
   }
   .events .item {
     margin-bottom: 66px;
