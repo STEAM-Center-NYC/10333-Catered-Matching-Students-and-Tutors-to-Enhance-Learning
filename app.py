@@ -1,15 +1,24 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, g
 import pymysql
 import pymysql.cursors
 import flask_login
 from dynaconf import Dynaconf
 import flask_login
 
+
+
+
+settings = Dynaconf(
+    settings_file =  ['settings.toml']
+)
+
+
 app = Flask(__name__)
 app.secret_key = "J3D16GH"
 
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
+
 class User:
     is_authenticated = True
     is_auonymous = False
@@ -27,7 +36,7 @@ class User:
 @login_manager.user_loader
 def load_user(user_id):
     cursor = get_db().cursor()
-    cursor.execute("SELECT * FROM `users` WHERE `id` = {user_id} ")
+    cursor.execute(f"SELECT * FROM `users` WHERE `id` = {user_id} ")
     result = cursor.fetchone()
     cursor.close
     get_db().commit()
@@ -35,19 +44,10 @@ def load_user(user_id):
     if result is None:
         return None
     
-    return User(result["id"], result["username"])
+    return User(result["id"], result["email"])
 
 
 
-settings = Dynaconf(
-    settings_file =  ['settings.toml']
-)
-
-settings = Dynaconf(
-    settings_file = ['settings.toml']
-)
-
-app = Flask(__name__)
 
 def connect_db():
     return pymysql.connect(
@@ -62,15 +62,15 @@ def connect_db():
 
 def get_db():
     '''Opens a new database connection per request.'''        
-    if not hasattr(get_db, 'db'):
-        get_db.db = connect_db()
-    return get_db.db   
+    if not hasattr(g, 'db'):
+        g.db = connect_db()
+    return g.db   
 
 @app.teardown_appcontext
 def close_db(error):
     '''Closes the database connection at the end of request.'''    
-    if hasattr(get_db, 'db'):
-        get_db.db.close() 
+    if hasattr(g, 'db'):
+        g.db.close() 
 
 @app.route("/", methods= ["GET", 'POST'])
 def home():
@@ -83,22 +83,21 @@ def landing():
 
     return render_template("landing-page.html.jinja")
 
-
+@flask_login.login_required
 
 @app.route('/sign_in', methods = ['GET','POST'])
 def sign_in():
     if request.method == 'POST':
-        username = request.form["email"]
+        email = request.form["email"]
         password = request.form["password"]
         cursor = get_db().cursor()
-        cursor.execute(f'SELECT * FROM `students` WHERE `student-email` = "{username}" ')
-        cursor.execute(f'SELECT * FROM `tutors` WHERE `email` = "{password}" ')
+        cursor.execute(f'SELECT * FROM `users` WHERE `email` = "{email}" ')
         result = cursor.fetchone()
         cursor.close()
         get_db().commit()
 
         if password == result["password"]:
-            user = load_user(result['email'])
+            user = load_user(result['id'])
             flask_login.login_user(user)
             return redirect('/')
     if flask_login.current_user.is_authenticated:
