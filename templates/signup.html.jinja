@@ -68,7 +68,8 @@ https://templatemo.com/tm-586-scholar
                         <!-- ***** Serach Start ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#contact">Sign In</a></li>
+                        <li class="scroll-to-section"><a href='signup-tutor.html.jinja'>Tutors Signup</a></li>
+                        <li class="scroll-to-section"><a href="">Sign In</a></li>
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -81,7 +82,7 @@ https://templatemo.com/tm-586-scholar
     </header>
     <!-- ***** Header Area End ***** -->
 
-    <div class="main-banner" id="top">
+    <div class="main-bannera" id="top">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -119,14 +120,40 @@ https://templatemo.com/tm-586-scholar
                                     <label for="inlineFormSelectPref">Educational Level</label>
                                     <select class="form-select" id="inlineFormSelectPref" name="education">
                                         <option selected>Choose...</option>
+                                        <option value="Middle-School">Middle School</option>
+                                        <option value="High-School">High School</option>
                                         <option value="Undergraduate">Undergraduate</option>
                                         <option value="Graduate">Graduate</option>
                                         <option value="No Degree">No degree</option>
                                     </select>
-                                    <div class="col-12 padding-top">
+                                    </div>
+
+                                <div class="col-9 ms-auto me-auto padding-top">
+                                    <label for="inlineFormSelectPref">Subject of Proficiency</label>
+                                    <select class="form-select" id="inlineFormSelectPref" name="subject">
+                                        <option selected>Choose...</option>
+                                        <option value="Math">Math</option>
+                                        <option value="Science">Science</option>
+                                        <option value="English">English</option>
+                                        <option value="Social Studies">Social Studies</option>
+                                    </select>
+
+
+                                <div class="col-9 ms-auto me-auto padding-top">
+                                    <label for="inlineFormSelectPref">Role</label>
+                                    <select class="form-select" id="inlineFormSelectPref" name="role">
+                                        <option selected>Choose...</option>
+                                        <option value="student">Student</option>
+                                        <option value="tutor">Tutor</option>
+                                    </select>
+
+                                </div>
+                        
+                                  <div class="col-12 padding-top">
                                     <button type="submit" class="btn btn-primary">Sign up</button>
+                                
                                 </div>
-                                </div>
+                               
                                
 
 
@@ -142,14 +169,6 @@ https://templatemo.com/tm-586-scholar
 
 
 
-    <footer>
-        <div class="container">
-            <div class="col-lg-12">
-                <p>Copyright © 2036 Scholar Organization. All rights reserved. &nbsp;&nbsp;&nbsp; Design: <a
-                        href="https://templatemo.com" rel="nofollow" target="_blank">TemplateMo</a></p>
-            </div>
-        </div>
-    </footer>
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->

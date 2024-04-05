@@ -1,12 +1,9 @@
 from flask import Flask, render_template, request, redirect, g
 import pymysql
 import pymysql.cursors
-import flask_login
 from dynaconf import Dynaconf
 import flask_login
-
-
-
+import random
 
 settings = Dynaconf(
     settings_file =  ['settings.toml']
@@ -45,6 +42,10 @@ def load_user(user_id):
         return None
     
     return User(result["id"], result["email"])
+
+
+
+
 
 
 
@@ -103,3 +104,47 @@ def sign_in():
     if flask_login.current_user.is_authenticated:
         return redirect("/")
     return render_template("signin-page.html.jinja")
+
+
+
+@app.route("/signup", methods= ["GET", 'POST'])
+def signup_tutor():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        gender = request.form['gender']
+        education = request.form['education']
+        subject = request.form['subject']
+        role = request.form['role']
+        cursor = get_db().cursor()
+        cursor.execute(f"INSERT INTO `users`(`name` , `email`, `password`, `gender`,`educational_level`, `subject`,`role`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}','{role}')")             
+        cursor.close()
+        get_db().commit()
+    return render_template("signup.html.jinja")
+
+
+@app.route("/match", methods= ["GET", 'POST'])  
+def matching():
+    if request.method == 'POST':
+        subjects = request.form['subject']
+        """if subjects == 'Choose...':
+            
+            return render_template("match.html.jinja", tutor_list = results2)
+        else:"""
+        cursor = get_db().cursor()
+        cursor.execute(f'SELECT * FROM `users` WHERE `subject` = "{subjects}" AND `role` = "tutor"')
+        results = cursor.fetchall()
+        results = random.choice(results)
+        cursor.close()
+    else:
+        cursor = get_db().cursor()
+        cursor.execute(f'SELECT * FROM `tutors`')
+        results = cursor.fetchall()
+        cursor.close()
+
+    return render_template("match.html.jinja", tutor_list = results)
+
+@app.route("/profile", methods=["GET","POST"])
+def profile():
+    return render_template("profile.html.jinja")
