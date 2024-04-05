@@ -74,6 +74,7 @@ def close_db(error):
         g.db.close() 
 
 @app.route("/", methods= ["GET", 'POST'])
+@flask_login.login_required
 def home():
     
     return render_template("index-page.html.jinja")
@@ -84,7 +85,7 @@ def landing():
 
     return render_template("landing-page.html.jinja")
 
-@flask_login.login_required
+
 
 @app.route('/sign_in', methods = ['GET','POST'])
 def sign_in():
@@ -108,7 +109,7 @@ def sign_in():
 
 
 @app.route("/signup", methods= ["GET", 'POST'])
-def signup_tutor():
+def signup():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
@@ -125,6 +126,7 @@ def signup_tutor():
 
 
 @app.route("/match", methods= ["GET", 'POST'])  
+@flask_login.login_required
 def matching():
     if request.method == 'POST':
         subjects = request.form['subject']
@@ -146,5 +148,6 @@ def matching():
     return render_template("match.html.jinja", tutor_list = results)
 
 @app.route("/profile", methods=["GET","POST"])
+@flask_login.login_required
 def profile():
     return render_template("profile.html.jinja")
