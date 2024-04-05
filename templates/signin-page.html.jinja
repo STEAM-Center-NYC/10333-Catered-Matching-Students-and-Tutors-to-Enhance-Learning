@@ -11,13 +11,18 @@
 <style>
 body {
 background-image: url('/static/images/banner-bg.jpg')};
+
 </style>
 </head>
-<p>
-<button></button>
-</p>
+
+
+<div class="col-md-6">
+<img src="/static/images/logo.png" alt="Logo" height="120px" width="150px">
+</div>
+
+
 <body class="bg-primary bg-opacity-25">
-    <section class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <section class="d-flex flex-column justify-content-center align-items-center">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 mx-auto rounded shadow bg-white">
@@ -26,22 +31,24 @@ background-image: url('/static/images/banner-bg.jpg')};
                             <div class="m-5 text-center">
                                 <h1>Sign In</h1>
                             </div>
-                            <form class="m-5">
+                            <form class="m-5" method="post">
                                 <div class="mb-3">
                                     <label for="name">Name</label>
-                                    <input class="form-control" type="text" id="name">
+                                    <input name="email" class="form-control" type="text" id="name">
                                 </div>
                                 <div class="mb-3">
                                     <label for="password">Password</label>
-                                    <input class="form-control" type="text" id="password">
+                                    <input name="password" class="form-control" type="text" id="password">
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-6">
                                         <div class="form-check">
-                                            <input type="checkbox" id="remember-me">
-                                            <label for="remember-me">Remember me</label>
-
+                                            <input class="form-check-input" type="checkbox" id="remember-me">
+                                            <label class="form-check-label" for="remember-me">Remember me</label>
                                         </div>
+                                    </div>
+                                    <div>
+                                        <input type="submit" class="form-control btn btn-primary">
                                     </div>
                                 </div>
                             </form>
