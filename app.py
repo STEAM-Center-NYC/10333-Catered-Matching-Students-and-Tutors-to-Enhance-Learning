@@ -4,6 +4,13 @@ import pymysql
 import pymysql.cursors
 from dynaconf import Dynaconf
 import random
+from flask_wtf import FlaskForm
+from wtforms import FileField,SubmitField
+import wtforms
+from werkzeug.utils import secure_filename
+import os
+
+
 
 settings = Dynaconf(
     settings_file =  ['settings.toml']
@@ -11,10 +18,12 @@ settings = Dynaconf(
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'jhbgdifjhujne3hr3@#J$JERri32@%j4#FLD?SRJF#ORJ$D>R>>$%K$GRIFJTi4OJrhjedfdsojfrSHTIREJHTOJRSJLFN568785345=--213;'
+app.config['UPLOAD_FOLDER'] = 'media'
 
-
-
-
+class UploadFileForm(FlaskForm):
+    file = FileField("File")
+    submit = SubmitField("Upload File")
 
 def connect_db():
     return pymysql.connect(
@@ -97,4 +106,13 @@ def matching():
 
 @app.route("/profile", methods=["GET","POST"])
 def profile():
-    return render_template("profile.html.jinja")
+    form = UploadFileForm()
+    if form.validate_on_submit():
+        file = form.file.data
+        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename)))
+        file_name = secure_filename(file.filename)
+        cursor = get_db().cursor()
+        cursor.execute(f"UPDATE users SET profile_img = {file_name} WHERE ')")             
+        cursor.close()
+        return ("File has been uploaded.")  
+    return render_template("profile.html.jinja", form=form)
