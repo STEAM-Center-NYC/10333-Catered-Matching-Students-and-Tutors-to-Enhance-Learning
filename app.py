@@ -13,38 +13,7 @@ settings = Dynaconf(
 
 app = Flask(__name__)
 
-<<<<<<< HEAD
 @app.route("/index", methods= ["GET", 'POST'])
-=======
-
-
-
-
-def connect_db():
-    return pymysql.connect(
-        host="10.100.33.60",
-        user= settings.db_user,
-        password= settings.db_pass,
-        database= settings.db_name,
-        cursorclass=pymysql.cursors.DictCursor,
-        autocommit=True
-    )
-
-
-def get_db():
-    '''Opens a new database connection per request.'''        
-    if not hasattr(g, 'db'):
-        g.db = connect_db()
-    return g.db    
-
-@app.teardown_appcontext
-def close_db(error):
-    '''Closes the database connection at the end of request.'''    
-    if hasattr(g, 'db'):
-        g.db.close() 
-
-@app.route("/", methods= ["GET", 'POST'])
->>>>>>> origin/main
 def home():
     
     return render_template("index-page.html.jinja")
@@ -53,8 +22,6 @@ def home():
 @app.route("/land", methods= ["GET", 'POST'])
 def landing():
     return render_template("landing-page.html.jinja")
-
-<<<<<<< HEAD
 
 
 
@@ -145,7 +112,7 @@ def send_message():
 
 if __name__ == '__main__':
     app.run(debug=True)
-=======
+
 @app.route("/contact", methods= ["GET", 'POST'])
 def contact():
     
@@ -185,7 +152,7 @@ def matching():
         results2 = random.choice(results)
         cursor.close()
     else:
-        cursor = get_db().cursor()
+        cursor = get_b().cursor()
         cursor.execute(f'SELECT * FROM `tutors`')
         results = cursor.fetchall()
         cursor.close()
@@ -195,4 +162,33 @@ def matching():
 @app.route("/profile", methods=["GET","POST"])
 def profile():
     return render_template("profile.html.jinja")
->>>>>>> origin/main
+
+
+    
+    
+@app.route('index')
+def index():
+    # Connect to MySQL Database
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+
+    # Execute a query to select all rows from the table
+    cursor.execute("SELECT * FROM users")
+    rows = cursor.fetchall()  # Fetch all rows
+
+    conn.close()
+
+    # Organize data by ID
+    data_by_id = {}
+    for row in rows:
+        row_id = row[0]
+        if row_id not in data_by_id:
+            data_by_id[row_id] = []
+        data_by_id[row_id].append(row)
+
+    return render_template('index.html', data_by_id=data_by_id)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
