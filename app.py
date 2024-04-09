@@ -164,8 +164,9 @@ def profile():
         file = form.file.data
         file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename)))
         file_name = secure_filename(file.filename)
+        user = flask_login.current_user
         cursor = get_db().cursor()
-        cursor.execute(f"UPDATE users SET profile_img = {file_name} WHERE ')")             
+        cursor.execute(f"UPDATE users SET profile_img = '{file_name}' WHERE id = {user.id}")             
         cursor.close()
         return ("File has been uploaded.")  
     return render_template("profile.html.jinja", form=form)
