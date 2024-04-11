@@ -32,43 +32,45 @@ https://templatemo.com/tm-586-scholar
 </head>
 
 <body>
-{%with messages = get_flashed_messages()%}
+  {%with messages = get_flashed_messages()%}
   {%if messages%}
-    {%for message in messages%}
-      <div><h3>{{ message }}</h3></div>
-    {%endfor%}
+  {%for message in messages%}
+  <div>
+    <h3>{{ message }}</h3>
+  </div>
+  {%endfor%}
   {%endif%}
-{%endwith%}
+  {%endwith%}
 
- <header class="header-area header-sticky">
+  <header class="header-area header-sticky">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <h1>Scholar</h1>
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Serach Start ***** -->
-                
-                    <!-- ***** Serach Start ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      
-                      
-                      <a href='/match' class="circle-btn mx-auto">Matching</a>
-                      
-                      <li class="scroll-to-section"><a href="/" class="active">Home</a></li>
-                      <li class="scroll-to-section"><a href="#contact">Contacts</a></li>
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo">
+              <h1>Scholar</h1>
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Serach Start ***** -->
+
+            <!-- ***** Serach Start ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+
+
+              <a href='/match' class="circle-btn mx-auto">Matching</a>
+
+              <li class="scroll-to-section"><a href="/" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="#contact">Contacts</a></li>
+            </ul>
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
         </div>
+      </div>
     </div>
   </header>
 
@@ -85,14 +87,21 @@ https://templatemo.com/tm-586-scholar
           </div>
 
           <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
-            <li><a href="#"> <i class="fa fa-calendar"></i> Recent Activity <span
-                  class="label label-warning pull-right r-activity">9</span></a></li>
-            <li><a href="#"> <i class="fa fa-edit"></i> Edit profile</a></li>
+
+
+            <li>
+              
+              <form method="POST" enctype="multipart/form-data" class="fa fa-edit">
+                Edit profile picture:
+                {{form.hidden_tag()}}
+                {{form.file()}}
+                {{form.submit()}}
+              </form>
+            </li>
           </ul>
         </div>
       </div>
-      <div class="profile-info col-md-9" <div class="panel">
+      <div class="profile-info col-md-9 panel">
         <div class="bio-graph-heading">
           Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ispum. Aliquam ac magna metus.
         </div>
@@ -131,14 +140,6 @@ https://templatemo.com/tm-586-scholar
   </div>
   </div>
 
-
-<form method="POST" enctype="multipart/form-data">
-{{form.hidden_tag()}}
-{{form.file()}}
-{{form.submit()}}
-
-
-</form>
 
 </body>
 
