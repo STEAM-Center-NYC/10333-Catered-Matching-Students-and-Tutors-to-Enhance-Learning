@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, g
+from flask import Flask, render_template, request, redirect, g, flash,url_for
 import pymysql
 import pymysql.cursors
 from dynaconf import Dynaconf
@@ -8,6 +8,7 @@ from flask_wtf import FlaskForm
 from wtforms import FileField,SubmitField
 from werkzeug.utils import secure_filename
 import os
+
 
 
 
@@ -81,21 +82,21 @@ def close_db(error):
     if hasattr(g, 'db'):
         g.db.close() 
 
-@app.route("/", methods= ["GET", 'POST'])
+@app.route("/home", methods= ["GET", 'POST'])
 @flask_login.login_required
 def home():
     
     return render_template("index-page.html.jinja")
 
 
-@app.route("/land", methods= ["GET", 'POST'])
+@app.route("/", methods= ["GET", 'POST'])
 def landing():
 
     return render_template("landing-page.html.jinja")
 
 
 
-@app.route('/sign_in', methods = ['GET','POST'])
+@app.route('/signin', methods = ['GET','POST'])
 def sign_in():
     if request.method == 'POST':
         email = request.form["email"]
@@ -111,7 +112,7 @@ def sign_in():
             flask_login.login_user(user)
             return redirect('/')
     if flask_login.current_user.is_authenticated:
-        return redirect("/")
+        return redirect("/home")
     return render_template("signin-page.html.jinja")
 
 
@@ -167,5 +168,6 @@ def profile():
         cursor = get_db().cursor()
         cursor.execute(f"UPDATE users SET profile_img = '{file_name}' WHERE id = {user.id}")             
         cursor.close()
-        return ("File has been uploaded.")  
+        flash("File has been uploaded.")
+        return redirect(url_for("profile"))
     return render_template("profile.html.jinja", form=form)
