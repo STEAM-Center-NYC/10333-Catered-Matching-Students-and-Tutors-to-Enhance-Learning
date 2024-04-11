@@ -1,11 +1,9 @@
-from flask import Flask,g
-from flask import render_template,request, redirect
+from flask import Flask, render_template, request, redirect, g
 import pymysql
 import pymysql.cursors
 from dynaconf import Dynaconf
+import flask_login
 import random
-
-
 
 settings = Dynaconf(
     settings_file =  ['settings.toml']
@@ -15,7 +13,34 @@ settings = Dynaconf(
 
 app = Flask(__name__)
 
-@app.route("/index", methods= ["GET", 'POST'])
+
+
+
+
+def connect_db():
+    return pymysql.connect(
+        host="10.100.33.60",
+        user= settings.db_user,
+        password= settings.db_pass,
+        database= settings.db_name,
+        cursorclass=pymysql.cursors.DictCursor,
+        autocommit=True
+    )
+
+
+def get_db():
+    '''Opens a new database connection per request.'''        
+    if not hasattr(g, 'db'):
+        g.db = connect_db()
+    return g.db    
+
+@app.teardown_appcontext
+def close_db(error):
+    '''Closes the database connection at the end of request.'''    
+    if hasattr(g, 'db'):
+        g.db.close() 
+
+@app.route("/", methods= ["GET", 'POST'])
 def home():
     
     return render_template("index-page.html.jinja")
@@ -23,108 +48,26 @@ def home():
 
 @app.route("/land", methods= ["GET", 'POST'])
 def landing():
+
     return render_template("landing-page.html.jinja")
-
-
-
-
-@app.route("/dm", methods= ["GET", 'POST'])
-def dm():
-    return render_template("dm-page.html.jinja")
-
-def send_message(student_id, tutor_id, message_text):
-    connection = pymysql.connect(host='10.100.33.60',
-                                 user='jedouard',
-                                 password='224449553',
-                                 database='tutoria')
-    cursor = connection.cursor()
-    sql = "INSERT INTO dm (student_id, tutor_id, message_text) VALUES (%s, %s, %s)"
-    cursor.execute(sql, (student_id, tutor_id, message_text))
-    connection.commit()
-    connection.close()
-
-# Sample data
-student_id = 1  # Assuming sender's user ID
-tutor_id = 2  # Assuming recipient's user ID
-message_text = "Hello, how are you?"
-
-# Call the function to send the message
-send_message(student_id, tutor_id, message_text)
-
-
-
-
-
-# Database connection settings
-db_host = '10.100.33.60'
-db_user = 'jedouard'
-db_password = '224449553'
-db_name = 'tutoria'
-
-# Function to retrieve messages for a user from the database
-def view_messages(user_id):
-    connection = pymysql.connect(host=db_host, user=db_user, password=db_password, database=db_name)
-    cursor = connection.cursor()
-    sql = "SELECT * FROM dm WHERE student_id = %s OR tutor_id = %s"
-    cursor.execute(sql, (user_id, user_id))
-    messages = cursor.fetchall()
-    connection.close()
-    return messages
-
-# Route for sender's messages
-@app.route('/student')
-def student_messages():
-    student_id = 1  # Assuming sender's(student) user ID
-    messages = view_messages(student_id)
-    return render_template('message.html.jinja', messages=messages)
-
-# Route for recipient's messages
-@app.route('/tutor')
-def tutor_messages():
-    tutor_id = 2  # Assuming recipient's(tutor) user ID
-    messages = view_messages(tutor_id)
-    return render_template('message.html.jinja', messages=messages)
-
-if __name__ == '__main__':
-    app.run(debug=True) 
-
- 
-
-
-
-# Route for recipient's messages
-@app.route('/tutor')
-def recipient_messages():
-    recipient_id = 2  # Assuming recipient's user ID
-    messages = view_messages(recipient_id)
-    return render_template('messages.html', messages=messages, tutor_id=tutor_id)
-
-# Route for sending messages
-@app.route('/send_message', methods=['POST'])
-def send_message():
-    tutor_id = request.form['tutor_id']
-    message_text = request.form['message_text']
-    connection = pymysql.connect(host=db_host, user=db_user, password=db_password, database=db_name)
-    cursor = connection.cursor()
-    sql = "INSERT INTO dm (student_id, tutor_id, message_text) VALUES (%s, %s, %s)"
-    cursor.execute(sql, (tutor_id, 1, message_text))  # Assuming the sender(student) is always user ID 1
-    connection.commit()
-    connection.close()
-    return redirect(url_for('tutor_messages'))
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
 @app.route("/contact", methods= ["GET", 'POST'])
 def contact():
     
     return render_template("contact-page.html.jinja")
 
+        if password == result["password"]:
+            user = load_user(result['id'])
+            flask_login.login_user(user)
+            return redirect('/')
+    if flask_login.current_user.is_authenticated:
+        return redirect("/")
+    return render_template("signin-page.html.jinja")
 
 
 
-@app.route("/signup-tutor", methods= ["GET", 'POST'])
-def signup_tutor():
+@app.route("/signup", methods= ["GET", 'POST'])
+def signup():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
@@ -134,13 +77,14 @@ def signup_tutor():
         subject = request.form['subject']
         role = request.form['role']
         cursor = get_db().cursor()
-        cursor.execute(f"INSERT INTO `users`(`name` , `email`, `password`, `gender`,`education-level`, `subject`,`role`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}','{role}')")             
+        cursor.execute(f"INSERT INTO `users`(`name` , `email`, `password`, `gender`,`educational_level`, `subject`,`role`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}','{role}')")             
         cursor.close()
         get_db().commit()
-    return render_template("signup-tutor.html.jinja")
+    return render_template("signup.html.jinja")
 
 
 @app.route("/match", methods= ["GET", 'POST'])  
+@flask_login.login_required
 def matching():
     if request.method == 'POST':
         subjects = request.form['subject']
@@ -149,9 +93,9 @@ def matching():
             return render_template("match.html.jinja", tutor_list = results2)
         else:"""
         cursor = get_db().cursor()
-        cursor.execute(f'SELECT * FROM `tutors` WHERE `subject` = "{subjects}"')
+        cursor.execute(f'SELECT * FROM `users` WHERE `subject` = "{subjects}" AND `role` = "tutor"')
         results = cursor.fetchall()
-        results2 = random.choice(results)
+        results = random.choice(results)
         cursor.close()
     else:
         cursor = get_b().cursor()
@@ -159,11 +103,22 @@ def matching():
         results = cursor.fetchall()
         cursor.close()
 
-    return render_template("match.html.jinja", tutor_list = results2)
+    return render_template("match.html.jinja", tutor_list = results)
 
 @app.route("/profile", methods=["GET","POST"])
+@flask_login.login_required
 def profile():
-    return render_template("profile.html.jinja")
+    form = UploadFileForm()
+    if form.validate_on_submit():
+        file = form.file.data
+        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename)))
+        file_name = secure_filename(file.filename)
+        user = flask_login.current_user
+        cursor = get_db().cursor()
+        cursor.execute(f"UPDATE users SET profile_img = '{file_name}' WHERE id = {user.id}")             
+        cursor.close()
+        return ("File has been uploaded.")  
+    return render_template("profile.html.jinja", form=form)
 
 
     
