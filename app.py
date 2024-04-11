@@ -5,6 +5,8 @@ import pymysql.cursors
 from dynaconf import Dynaconf
 import random
 
+
+
 settings = Dynaconf(
     settings_file =  ['settings.toml']
 )
