@@ -76,8 +76,11 @@ def close_db(error):
 @app.route("/", methods= ["GET", 'POST'])
 @flask_login.login_required
 def home():
-    
-    return render_template("index-page.html.jinja")
+    cursor = get_db().cursor()
+    cursor.execute('SELECT * FROM `users` ')
+    result = cursor.fetchall()
+    cursor.close()
+    return render_template("index-page.html.jinja", result =result)
 
 
 @app.route("/land", methods= ["GET", 'POST'])
@@ -151,3 +154,4 @@ def matching():
 @flask_login.login_required
 def profile():
     return render_template("profile.html.jinja")
+
