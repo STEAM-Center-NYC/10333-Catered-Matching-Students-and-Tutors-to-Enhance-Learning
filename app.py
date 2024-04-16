@@ -40,7 +40,7 @@ def close_db(error):
     if hasattr(g, 'db'):
         g.db.close() 
 
-@app.route("/", methods= ["GET", 'POST'])
+@app.route("/index", methods= ["GET", 'POST'])
 def home():
     
     return render_template("index-page.html.jinja")
@@ -48,21 +48,22 @@ def home():
 
 @app.route("/land", methods= ["GET", 'POST'])
 def landing():
+    
 
     return render_template("landing-page.html.jinja")
 
-@app.route("/contact", methods= ["GET", 'POST'])
-def contact():
+#@app.route("/contact", methods= ["GET", 'POST'])
+#def contact():
     
-    return render_template("contact-page.html.jinja")
+   # return render_template("contact-page.html.jinja")
 
-        if password == result["password"]:
-            user = load_user(result['id'])
-            flask_login.login_user(user)
-            return redirect('/')
-    if flask_login.current_user.is_authenticated:
-        return redirect("/")
-    return render_template("signin-page.html.jinja")
+        #if password == result["password"]:
+           # user = load_user(result['id'])
+          #  flask_login.login_user(user)
+          #  return redirect('/')
+    #if flask_login.current_user.is_authenticated:
+        #return redirect("/")
+    #return render_template("signin-page.html.jinja")
 
 
 
@@ -121,31 +122,5 @@ def profile():
     return render_template("profile.html.jinja", form=form)
 
 
-    
-    
-@app.route('index')
-def index():
-    # Connect to MySQL Database
-    conn = mysql.connector.connect(**db_config)
-    cursor = conn.cursor()
 
-    # Execute a query to select all rows from the table
-    cursor.execute("SELECT * FROM users")
-    rows = cursor.fetchall()  # Fetch all rows
 
-    conn.close()
-
-    # Organize data by ID
-    data_by_id = {}
-    for row in rows:
-        row_id = row[0]
-        if row_id not in data_by_id:
-            data_by_id[row_id] = []
-        data_by_id[row_id].append(row)
-
-    return render_template('index.html', data_by_id=data_by_id)
-
-if __name__ == '__main__':
-    app.run(debug=True)
-if __name__ == '__main__':
-    app.run(debug=True)
