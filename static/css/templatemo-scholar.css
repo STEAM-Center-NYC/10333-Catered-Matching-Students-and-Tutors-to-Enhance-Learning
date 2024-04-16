@@ -300,9 +300,9 @@ Header Style
 }
 
 .header-area {
-  position: absolute;
-  background-color: transparent;
-  top: 40px;
+  position: sticky;
+  background-color: #7a6ad8;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 100;

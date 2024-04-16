@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, g, flash,url_for
+from flask import Flask, render_template, request, redirect, g, flash,url_for,send_from_directory
 import pymysql
 import pymysql.cursors
 from dynaconf import Dynaconf
@@ -183,5 +183,17 @@ def profile():
 @app.route("/profile/<id>", methods=["GET","POST"])
 @flask_login.login_required
 def public_profile(id):
+    cursor = get_db().cursor()
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = {id}')
+    result = cursor.fetchone()
+    cursor.close()
+    return render_template("public_profile.html.jinja", result = result)
 
-    return render_template("profile.html.jinja")
+
+@app.route('/media/<path:filename>')
+def media(filename):
+    return send_from_directory(
+        app.config['UPLOAD_FOLDER'],
+        filename,
+        as_attachment=True
+    )
