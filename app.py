@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, g
+from flask import Flask, render_template, request, redirect, g, flash,url_for
 import pymysql
 import pymysql.cursors
 from dynaconf import Dynaconf
@@ -6,9 +6,9 @@ import flask_login
 import random
 from flask_wtf import FlaskForm
 from wtforms import FileField,SubmitField
-import wtforms
 from werkzeug.utils import secure_filename
 import os
+
 
 
 
@@ -30,10 +30,16 @@ class User:
     is_auonymous = False
     is_active = True
 
-    def __init__(self, id, email): 
+    def __init__(self, id, email, dob, gender , subject, educational_level, role, name): 
         
         self.id = id
         self.email = email
+        self.dob = dob
+        self.gender = gender
+        self.subject = subject
+        self.educational_level = educational_level
+        self.role = role
+        self.name = name
 
     def get_id(self):
         return str(self.id)
@@ -50,7 +56,7 @@ def load_user(user_id):
     if result is None:
         return None
     
-    return User(result["id"], result["email"])
+    return User(result["id"], result["email"],result['dob'],result['gender'],result['subject'],result['educational_level'],result['role'],result['name'])
 
 
 
@@ -82,7 +88,7 @@ def close_db(error):
     if hasattr(g, 'db'):
         g.db.close() 
 
-@app.route("/", methods= ["GET", 'POST'])
+@app.route("/home", methods= ["GET", 'POST'])
 @flask_login.login_required
 def home():
     cursor = get_db().cursor()
@@ -92,7 +98,7 @@ def home():
     return render_template("index-page.html.jinja", result =result)
 
 
-@app.route("/land", methods= ["GET", 'POST'])
+@app.route("/", methods= ["GET", 'POST'])
 def landing():
 
     return render_template("landing-page.html.jinja")
@@ -115,7 +121,7 @@ def signin():
             flask_login.login_user(user)
             return redirect('/')
     if flask_login.current_user.is_authenticated:
-        return redirect("/")
+        return redirect("/home")
     return render_template("signin-page.html.jinja")
 
 
@@ -178,5 +184,4 @@ def profile():
 @flask_login.login_required
 def public_profile(id):
 
-    
     return render_template("profile.html.jinja")
