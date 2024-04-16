@@ -173,3 +173,10 @@ def profile():
         cursor.close()
         return ("File has been uploaded.")  
     return render_template("profile.html.jinja", form=form)
+
+@app.route("/profile/<id>", methods=["GET","POST"])
+@flask_login.login_required
+def public_profile(id):
+
+    
+    return render_template("profile.html.jinja")
