@@ -42,8 +42,11 @@ def close_db(error):
 
 @app.route("/index", methods= ["GET", 'POST'])
 def home():
-    
-    return render_template("index-page.html.jinja")
+    cursor = get_db().cursor()
+    cursor.execute('SELECT * FROM `users` ')
+    result = cursor.fetchall()
+    cursor.close()
+    return render_template("index-page.html.jinja", result =result)
 
 
 @app.route("/land", methods= ["GET", 'POST'])
@@ -52,18 +55,40 @@ def landing():
 
     return render_template("landing-page.html.jinja")
 
-#@app.route("/contact", methods= ["GET", 'POST'])
-#def contact():
+@app.route("/contact", methods= ["GET", 'POST'])
+def contact():
     
-   # return render_template("contact-page.html.jinja")
+    return render_template("contact-page.html.jinja")
 
-        #if password == result["password"]:
-           # user = load_user(result['id'])
-          #  flask_login.login_user(user)
-          #  return redirect('/')
-    #if flask_login.current_user.is_authenticated:
-        #return redirect("/")
-    #return render_template("signin-page.html.jinja")
+
+        if password == result["password"]:
+            user = load_user(result['id'])
+            flask_login.login_user(user)
+            return redirect('/')
+    if flask_login.current_user.is_authenticated:
+        return redirect("/")
+    return render_template("signin-page.html.jinja")
+
+
+@app.route('/signin', methods = ['GET','POST'])
+def signin():
+    if request.method == 'POST':
+        email = request.form["email"]
+        password = request.form["password"]
+        cursor = get_db().cursor()
+        cursor.execute(f'SELECT * FROM `users` WHERE `email` = "{email}" ')
+        result = cursor.fetchone()
+        cursor.close()
+        get_db().commit()
+
+        if password == result["password"]:
+            user = load_user(result['id'])
+            flask_login.login_user(user)
+            return redirect('/')
+    if flask_login.current_user.is_authenticated:
+        return redirect("/")
+    return render_template("signin-page.html.jinja")
+>>>>>>> origin/Jedaiah
 
 
 
