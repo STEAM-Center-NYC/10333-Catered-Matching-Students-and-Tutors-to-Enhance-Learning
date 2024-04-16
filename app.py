@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, g,flash,url_for
+from flask import Flask, render_template, request, redirect, g
 import pymysql
 import pymysql.cursors
 from dynaconf import Dynaconf
