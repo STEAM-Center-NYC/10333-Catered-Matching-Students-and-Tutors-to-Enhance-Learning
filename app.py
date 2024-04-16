@@ -90,8 +90,8 @@ def landing():
 
 
 
-@app.route('/sign_in', methods = ['GET','POST'])
-def sign_in():
+@app.route('/signin', methods = ['GET','POST'])
+def signin():
     if request.method == 'POST':
         email = request.form["email"]
         password = request.form["password"]
