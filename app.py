@@ -1,9 +1,13 @@
-from flask import Flask, render_template, request, redirect, g
+from flask import Flask, render_template, request, redirect, g,flash,url_for
 import pymysql
 import pymysql.cursors
 from dynaconf import Dynaconf
 import flask_login
 import random
+from flask_wtf import FlaskForm
+from wtforms import FileField,SubmitField
+from werkzeug.utils import secure_filename
+import os
 
 settings = Dynaconf(
     settings_file =  ['settings.toml']
@@ -61,7 +65,7 @@ def contact():
     return render_template("contact-page.html.jinja")
 
 
-        if password == result["password"]:
+    if password == result["password"]:
             user = load_user(result['id'])
             flask_login.login_user(user)
             return redirect('/')
@@ -88,7 +92,7 @@ def signin():
     if flask_login.current_user.is_authenticated:
         return redirect("/")
     return render_template("signin-page.html.jinja")
->>>>>>> origin/Jedaiah
+
 
 
 
@@ -124,7 +128,7 @@ def matching():
         results = random.choice(results)
         cursor.close()
     else:
-        cursor = get_b().cursor()
+        cursor = get_db().cursor()
         cursor.execute(f'SELECT * FROM `tutors`')
         results = cursor.fetchall()
         cursor.close()
