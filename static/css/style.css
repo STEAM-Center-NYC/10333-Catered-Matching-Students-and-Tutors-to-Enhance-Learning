@@ -28,6 +28,7 @@ padding-bottom:20px;
     align-items: center;
     position: sticky;
     text-align: center;
+    margin:auto;
    
 
 }
@@ -65,9 +66,16 @@ margin-bottom: 10px;
 
 }
 
-.border {
+.border-btn{
 
 border-color: black;
 
 
 }
+
+.border-btn{
+
+    border-color: black;
+    padding: 35px;
+    
+    }

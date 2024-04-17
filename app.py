@@ -92,7 +92,7 @@ def close_db(error):
 @flask_login.login_required
 def home():
     cursor = get_db().cursor()
-    cursor.execute('SELECT * FROM `users` ')
+    cursor.execute('SELECT * FROM `users` WHERE `role` = "tutor"')
     result = cursor.fetchall()
     cursor.close()
     return render_template("index-page.html.jinja", result =result)
@@ -175,10 +175,15 @@ def profile():
         file_name = secure_filename(file.filename)
         user = flask_login.current_user
         cursor = get_db().cursor()
-        cursor.execute(f"UPDATE users SET profile_img = '{file_name}' WHERE id = {user.id}")             
+        cursor.execute(f"UPDATE users SET profile_img = '{file_name}' WHERE id = {user.id}")          
         cursor.close()
-        return ("File has been uploaded.")  
-    return render_template("profile.html.jinja", form=form)
+        return ("File has been uploaded.") 
+    cursor = get_db().cursor()
+    user = flask_login.current_user
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
+    result = cursor.fetchone()
+    cursor.close() 
+    return render_template("profile.html.jinja", form=form, result= result)
 
 @app.route("/profile/<id>", methods=["GET","POST"])
 @flask_login.login_required
