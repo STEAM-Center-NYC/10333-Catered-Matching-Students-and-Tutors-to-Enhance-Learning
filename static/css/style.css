@@ -21,10 +21,15 @@ padding-bottom:20px;
 
 
 .circle-btn{
-    height: 102px;
-    width: 102px;
-    border-radius: 50%;
-    background-color: red;
+    padding: 30px;
+    border-radius: 90px;
+    background-color: plum;
+    vertical-align: central;
+    align-items: center;
+    position: sticky;
+    text-align: center;
+    margin:auto;
+   
 
 }
 
@@ -61,9 +66,16 @@ margin-bottom: 10px;
 
 }
 
-.border {
+.border-btn{
 
 border-color: black;
 
 
 }
+
+.border-btn{
+
+    border-color: black;
+    padding: 35px;
+    
+    }

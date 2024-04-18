@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, g, flash,url_for
+from flask import Flask, render_template, request, redirect, g, flash,url_for,send_from_directory
 import pymysql
 import pymysql.cursors
 from dynaconf import Dynaconf
@@ -91,8 +91,11 @@ def close_db(error):
 @app.route("/home", methods= ["GET", 'POST'])
 @flask_login.login_required
 def home():
-    
-    return render_template("index-page.html.jinja")
+    cursor = get_db().cursor()
+    cursor.execute('SELECT * FROM `users` WHERE `role` = "tutor"')
+    result = cursor.fetchall()
+    cursor.close()
+    return render_template("index-page.html.jinja", result =result)
 
 
 @app.route("/", methods= ["GET", 'POST'])
@@ -103,7 +106,7 @@ def landing():
 
 
 @app.route('/signin', methods = ['GET','POST'])
-def sign_in():
+def signin():
     if request.method == 'POST':
         email = request.form["email"]
         password = request.form["password"]
@@ -172,16 +175,34 @@ def profile():
         file_name = secure_filename(file.filename)
         user = flask_login.current_user
         cursor = get_db().cursor()
-        cursor.execute(f"UPDATE users SET profile_img = '{file_name}' WHERE id = {user.id}")             
+        cursor.execute(f"UPDATE users SET profile_img = '{file_name}' WHERE id = {user.id}")          
         cursor.close()
-        flash("File has been uploaded.")
-        return redirect(url_for("profile"))
-    user = flask_login.current_user
+        return ("File has been uploaded.") 
     cursor = get_db().cursor()
+    user = flask_login.current_user
     cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
     result = cursor.fetchone()
+    cursor.close() 
+    return render_template("profile.html.jinja", form=form, result= result)
+
+@app.route("/profile/<id>", methods=["GET","POST"])
+@flask_login.login_required
+def public_profile(id):
+    cursor = get_db().cursor()
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = {id}')
+    result = cursor.fetchone()
     cursor.close()
-    return render_template("profile.html.jinja", form=form, result = result)
+    return render_template("public_profile.html.jinja", result = result)
+
+
+@app.route('/media/<path:filename>')
+def media(filename):
+    return send_from_directory(
+        app.config['UPLOAD_FOLDER'],
+        filename,
+        as_attachment=True
+    )
+  
 
 
 

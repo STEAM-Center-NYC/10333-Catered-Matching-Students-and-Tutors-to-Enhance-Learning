@@ -51,7 +51,7 @@ https://templatemo.com/tm-586-scholar
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="index.html" class="logo border-btn">
                         <h1>Tutoria</h1>
                     </a>
                     <!-- ***** Logo End ***** -->
@@ -62,10 +62,10 @@ https://templatemo.com/tm-586-scholar
                     <ul class="nav">
                       
                       
+                      <a href='/match' class="circle-btn mx-auto ">Find Match</a>
+                      <li class="scroll-to-section border-btn "><a href="#contact">Contacts</a></li>
+                      <li class="scroll-to-section border-btn"><a href="/profile" class="active">Profile</a></li>
                       
-                      <li class="scroll-to-section"><a href="match" class="active">Matching</a></li>
-                      <li class="scroll-to-section"><a href="/" class="active">Home</a></li>
-                      <li class="scroll-to-section"><a href="#contact">Contacts</a></li>
                   </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -154,18 +154,18 @@ https://templatemo.com/tm-586-scholar
           <div class="item">
             <div class="row">
               <div class="col-lg-3">
-                <div class="image">
-                  <img src="/static/images/event-01.jpg" alt="">
+                <div class="image ">
+                  <img src="/media/{{x['profile_img']}}" alt="">
                 </div>
               </div>
               <div class="col-lg-9">
                 <ul>
                   <li>
-                    <span class="category">Name</span>
-                    <h4>{{x['name']}}</h4>
+                    <span class="category">{{x['name']}}</span>
+                    <h4>Subject: {{x['subject']}}</h4>
                   </li>
                   <li>
-                    <span>email</span>
+                    <span>Email</span>
                     <h6>{{x['email']}}</h6>
                   </li>
                   <li>
@@ -173,11 +173,11 @@ https://templatemo.com/tm-586-scholar
                     <h6></h6>
                   </li>
                   <li>
-                    <span>Price:</span>
-                    <h6>$120</h6>
+                    <span>Education</span>
+                    <h6>{{x['educational_level']}}</h6>
                   </li>
                 </ul>
-                <a href="#"><i class="fa fa-angle-right"></i></a>
+                <a href="/profile/{{x['id']}}"><i class="fa fa-angle-right"></i></a>
               </div>
             </div>
           </div>
