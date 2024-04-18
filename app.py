@@ -182,3 +182,6 @@ def profile():
     result = cursor.fetchone()
     cursor.close()
     return render_template("profile.html.jinja", form=form, result = result)
+
+
+
