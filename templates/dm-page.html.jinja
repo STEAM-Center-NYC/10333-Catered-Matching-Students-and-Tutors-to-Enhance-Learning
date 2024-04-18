@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Messaging</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="chat-window">
+            <div class="messages" id="messages">
+                <!-- Messages will be appended here -->
+            </div>
+            <div class="input-box">
+                <input type="text" id="messageInput" placeholder="Type your message...">
+                <button id="sendButton">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>  
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+    const messageInput = document.getElementById("messageInput");
+    const sendButton = document.getElementById("sendButton");
+    const messagesContainer = document.getElementById("messages");
+
+    sendButton.addEventListener("click", function() {
+        const messageText = messageInput.value.trim();
+        if (messageText !== "") {
+            sendMessage(messageText);
+            messageInput.value = ""; // Clear input after sending message
+        }
+    });
+
+    function sendMessage(messageText) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", "sent");
+        messageDiv.innerHTML = `<p>${messageText}</p>`;
+        messagesContainer.appendChild(messageDiv);
+        // Scroll to bottom of messages
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        // Call Python script to save message to database
+        saveMessageToDatabase(messageText);
+    }
+});
+    </script>
+</body>
+</html>
+
