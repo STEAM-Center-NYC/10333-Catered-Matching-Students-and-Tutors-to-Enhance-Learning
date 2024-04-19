@@ -204,5 +204,26 @@ def media(filename):
     )
   
 
-
+@app.route("/edit",methods=["GET","POST"])
+@flask_login.login_required
+def edit():
+    user = flask_login.current_user
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        gender = request.form['gender']
+        education = request.form['education']
+        subject = request.form['subject']
+        date = request.form['date']
+        cursor = get_db().cursor()
+        cursor.execute(f"UPDATE `users` SET name = '{name}', email = '{email}', gender = '{gender}', educational_level = '{education}', subject = '{subject}',  dob = '{date}' WHERE `id` = {user.id} ")             
+        cursor.close()
+        return redirect("/profile")
+    
+    get_db().commit()
+    cursor = get_db().cursor()
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = {user.id}')
+    result = cursor.fetchone()
+    cursor.close()
+    return render_template("edit.html.jinja", result = result)
 

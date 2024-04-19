@@ -95,11 +95,11 @@ https://templatemo.com/tm-586-scholar
             <li>
               
               <form method="POST" enctype="multipart/form-data" class="fa fa-edit">
-                Edit profile picture:
+                Change profile picture:
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {{form.hidden_tag()}}
+               <div class="pad10" >{{form.hidden_tag()}}</div> 
                 {{form.file()}}
-                {{form.submit()}}
+                <div class="pad10" >{{form.submit()}}</div>
               </form>
             </li>
           </ul>
@@ -136,8 +136,10 @@ https://templatemo.com/tm-586-scholar
             <div class="bio-row">
               <p><span>Subject </span>: {{result['subject']}}</p>
             </div>
+            
           </div>
         </div>
+        <a class="btn btn-success" href="/edit">Edit</a>
       </div>
     </div>
   </div>
