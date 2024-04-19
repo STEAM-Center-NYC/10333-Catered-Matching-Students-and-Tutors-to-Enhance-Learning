@@ -300,9 +300,9 @@ Header Style
 }
 
 .header-area {
-  position: absolute;
-  background-color: transparent;
-  top: 40px;
+  position: sticky;
+  background-color: #7a6ad8;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 100;
@@ -625,7 +625,7 @@ Header Style
   }
   .header-area .logo {
     margin-left: 0px;
-    margin-top: 30px;
+    margin-top: 0px;
   }
   .header-area .menu-trigger {
     display: block !important;
@@ -671,7 +671,7 @@ Banner Style
   background-image: url(/static/images/background.png);
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 170px 0px 120px 0px;
+  padding: 10px 0px 40px 0px;
 }
 .main-bannera {
   background-image: url(/static/images/background.png);
@@ -1699,6 +1699,7 @@ body {
 
 @media (max-width: 767px) {
   .header-area {
+    background-color: #7a6ad8;
     top: 0px;
   }
   .header-area .main-nav .logo h1 {
