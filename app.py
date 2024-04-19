@@ -136,8 +136,9 @@ def signup():
         education = request.form['education']
         subject = request.form['subject']
         role = request.form['role']
+        date = request.form['date']
         cursor = get_db().cursor()
-        cursor.execute(f"INSERT INTO `users`(`name` , `email`, `password`, `gender`,`educational_level`, `subject`,`role`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}','{role}')")             
+        cursor.execute(f"INSERT INTO `users`(`name` , `email`, `password`, `gender`,`educational_level`,`subject`,`role`,`dob`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}','{role}','{date}')")             
         cursor.close()
         get_db().commit()
     return render_template("signup.html.jinja")
@@ -205,4 +206,9 @@ def media(filename):
   
 
 
+
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    return render_template("contact-page.html.jinja")
 
