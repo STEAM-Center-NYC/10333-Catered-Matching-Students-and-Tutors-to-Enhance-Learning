@@ -29,6 +29,7 @@ padding-bottom:20px;
     position: sticky;
     text-align: center;
     margin:auto;
+    top:10px
    
 
 }
@@ -66,12 +67,7 @@ margin-bottom: 10px;
 
 }
 
-.border-btn{
 
-border-color: black;
-
-
-}
 
 .border-btn{
 
@@ -79,3 +75,40 @@ border-color: black;
     padding: 35px;
     
     }
+
+
+.row2>* {
+    flex-shrink: 0;
+    width: 115%;
+    max-width: 130%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+    text-align: center;
+}
+
+.border-btn2{
+
+    border-color: black;
+    padding: 20px;
+    
+    }
+
+.top {
+
+top:23px;
+
+}
+
+.pad {
+
+padding: 20px;
+
+}
+
+.pad10{
+
+padding-top: 10px;
+
+
+}

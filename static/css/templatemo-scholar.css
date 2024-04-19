@@ -440,7 +440,7 @@ Header Style
 .header-area .main-nav .menu-trigger {
   cursor: pointer;
   position: absolute;
-  top: 33px;
+  top: 21px;
   width: 32px;
   height: 40px;
   text-indent: -9999em;
@@ -591,8 +591,7 @@ Header Style
   }
   .header-area .main-nav .logo {
     position: absolute;
-    left: 30px;
-    top: 0px;
+
   }
   .background-header .main-nav .logo {
     top: 0px;
@@ -631,7 +630,7 @@ Header Style
     display: block !important;
   }
   .header-area .main-nav {
-    overflow: hidden;
+    overflow: none;
   }
   .header-area .main-nav .nav {
     float: none;
