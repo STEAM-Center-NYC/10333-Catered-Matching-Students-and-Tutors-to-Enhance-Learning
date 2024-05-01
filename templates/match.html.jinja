@@ -20,17 +20,15 @@
     <link rel="stylesheet" href="/static/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="/static/css/style.css">
+    
  
-<!--
 
-TemplateMo 586 Scholar
 
-https://templatemo.com/tm-586-scholar
 
--->
+
   </head>
 
-<body>
+<body class="bg-primary bg-opacity-25">
 
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
@@ -53,7 +51,7 @@ https://templatemo.com/tm-586-scholar
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <h1>Scholar</h1>
+                        <h1>Tutoria</h1>
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Serach Start ***** -->
@@ -85,16 +83,18 @@ https://templatemo.com/tm-586-scholar
         <div class="col-lg-9 me-auto ms-auto">
           
           <form method="POST">
-           <label for="inlineFormSelectPref">Subject of Need</label>
-                                    <select class="form-select" id="inlineFormSelectPref" name="subject">
-                                        <option selected >Choose...</option>
-                                        <option value="Math">Math</option>
-                                        <option value="Science">Science</option>
-                                        <option value="English">English</option>
-                                        <option value="Social Studies">Social Studies</option>
+            <div class="dropdown">
+              <label for="inlineFormSelectPref">Subject of Need</label>
+                              <select class="d-flex flex-column justify-content-center align-items-center form-select" id="inlineFormSelectPref" name="subject">
+                                  <button selected>Choose...</button>
+                                  <option value="Math">Math</option>
+                                  <option value="Science">Science</option>
+                                  <option value="English">English</option>
+                                  <option value="Social Studies">Social Studies</option>
+                               </div> 
                                     </select>
                                     <div class="col-12 padding-top padding-bottom">
-                                    <button type="submit" class="btn btn-primary">Match</button>
+                                    <button type="submit" class="btn btn-info btn-lg">Match</button>
                                     </div>
                                     
                                     
