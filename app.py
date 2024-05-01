@@ -119,7 +119,7 @@ def signin():
         if password == result["password"]:
             user = load_user(result['id'])
             flask_login.login_user(user)
-            return redirect('/')
+            return redirect('/home')
     if flask_login.current_user.is_authenticated:
         return redirect("/home")
     return render_template("signin-page.html.jinja")
@@ -141,7 +141,7 @@ def signup():
         cursor.execute(f"INSERT INTO `users`(`name` , `email`, `password`, `gender`,`educational_level`,`subject`,`role`,`dob`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}','{role}','{date}')")             
         cursor.close()
         get_db().commit()
-    return render_template("signup.html.jinja")
+    return redirect("signin-page.html.jinja")
 
 
 @app.route("/match", methods= ["GET", 'POST'])  
