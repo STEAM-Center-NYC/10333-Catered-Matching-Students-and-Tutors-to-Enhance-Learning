@@ -2,7 +2,7 @@ body {
     color: #797979;
     background: #f1f2f7;
     font-family: 'Open Sans', sans-serif;
-    padding: 75px !important;
+    padding: 30px !important;
     margin: 0px !important;
     font-size: 13px;
     text-rendering: optimizeLegibility;
@@ -19,7 +19,7 @@ body {
     color: #fff;
     border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
-    padding: 30px;
+    padding: 10px;
     text-align: center;
 }
 
