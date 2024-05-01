@@ -119,7 +119,7 @@ def signin():
         if password == result["password"]:
             user = load_user(result['id'])
             flask_login.login_user(user)
-            return redirect('/')
+            return redirect('/home')
     if flask_login.current_user.is_authenticated:
         return redirect("/home")
     return render_template("signin-page.html.jinja")
