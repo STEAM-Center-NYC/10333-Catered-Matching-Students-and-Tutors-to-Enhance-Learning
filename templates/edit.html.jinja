@@ -92,16 +92,7 @@ https://templatemo.com/tm-586-scholar
           <ul class="nav nav-pills nav-stacked">
 
 
-            <li>
-              
-              <form method="POST" enctype="multipart/form-data" class="fa fa-edit">
-                Change profile picture:
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               <div class="pad10" >{{form.hidden_tag()}}</div> 
-                {{form.file()}}
-                <div class="pad10" >{{form.submit()}}</div>
-              </form>
-            </li>
+
           </ul>
         </div>
       </div>
@@ -109,37 +100,41 @@ https://templatemo.com/tm-586-scholar
         <div class="bio-graph-heading">
          
         </div>
+        <form method="POST">
         <div class="panel-body bio-graph-info border">
           <h1>Bio</h1>
+          
           <div class="row">
             <div class="bio-row">
-              <p><span>Full Name </span>: {{result['name']}}</p>
+              <p><span>Full Name </span>:<input type="text" value="{{result['name']}}" name="name"> </p>
             </div>
             <div class="bio-row">
               <p><span>User Id</span>: 000000{{result['id']}}</p>
             </div>
             <div class="bio-row">
-              <p><span>Email </span>: {{result['email']}}</p>
+              <p><span>Email </span>:<input type="text" value="{{result['email']}}" name="email"></p>
             </div>
             <div class="bio-row">
-              <p><span>Birthday</span>:{{result['dob']}}</p>
+              <p><span>Birthday</span>:<input type="date" value="{{result['dob']}}" name="date"></p>
             </div>
             <div class="bio-row">
               <p><span>Role </span>: {{result['role']}}</p>
             </div>
             <div class="bio-row">
-              <p><span>Gender</span>: {{result['gender']}}</p>
+              <p><span>Gender</span>:<input type="text" value="{{result['gender']}}" name="gender"></p>
             </div>
             <div class="bio-row">
-              <p><span>Education </span>: {{result['educational_level']}}</p>
+              <p><span>Education </span>:<input type="text" value="{{result['educational_level']}}" name="education"></p>
             </div>
             <div class="bio-row">
-              <p><span>Subject </span>: {{result['subject']}}</p>
+              <p><span>Subject </span>:<input type="text" value="{{result['subject']}}" name="subject"></p>
             </div>
+           
             
           </div>
         </div>
-        <a class="btn btn-success" href="/edit">Edit</a>
+        <button type="submit" class="btn btn-success">Done</button>
+         </form>
       </div>
     </div>
   </div>

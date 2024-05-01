@@ -130,8 +130,8 @@ body {
 }
 
 .section {
-  padding-top: 30px;
-  margin-top: 120px;
+  padding-top:30px;
+  margin-top: 50px;
 }
 
 .section-heading {
@@ -300,9 +300,9 @@ Header Style
 }
 
 .header-area {
-  position: absolute;
-  background-color: transparent;
-  top: 40px;
+  position: sticky;
+  background-color: #7a6ad8;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 100;
@@ -440,7 +440,7 @@ Header Style
 .header-area .main-nav .menu-trigger {
   cursor: pointer;
   position: absolute;
-  top: 33px;
+  top: 21px;
   width: 32px;
   height: 40px;
   text-indent: -9999em;
@@ -591,8 +591,7 @@ Header Style
   }
   .header-area .main-nav .logo {
     position: absolute;
-    left: 30px;
-    top: 0px;
+
   }
   .background-header .main-nav .logo {
     top: 0px;
@@ -625,13 +624,13 @@ Header Style
   }
   .header-area .logo {
     margin-left: 0px;
-    margin-top: 30px;
+    margin-top: 0px;
   }
   .header-area .menu-trigger {
     display: block !important;
   }
   .header-area .main-nav {
-    overflow: hidden;
+    overflow: none;
   }
   .header-area .main-nav .nav {
     float: none;
@@ -671,21 +670,19 @@ Banner Style
   background-image: url(/static/images/background.png);
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 170px 0px 120px 0px;
+  padding: 10px 0px 40px 0px;
 }
 .main-bannera {
   background-image: url(/static/images/background.png);
   background-repeat: no-repeat;
   background-size: auto;
   padding: 170px 0px 120px 0px;
-  min-height: 100vh;
+ 
 }
 
-.main-bannera {
-  background-image: url(../images/banner-bg.jpg);
-  background-repeat: no-repeat;
-  background-size:auto;
-  padding: 170px 0px 120px 0px;
+.back-img {
+background-image: url(/static/images/background.png);
+
 }
 
 .main-banner .item-1 {
@@ -1701,6 +1698,7 @@ body {
 
 @media (max-width: 767px) {
   .header-area {
+    background-color: #7a6ad8;
     top: 0px;
   }
   .header-area .main-nav .logo h1 {
@@ -1844,7 +1842,7 @@ body {
     display: none;
   }
   .events {
-    margin-top: 80px;
+    margin-top: 80pxpx;
   }
   .events .item {
     margin-bottom: 66px;

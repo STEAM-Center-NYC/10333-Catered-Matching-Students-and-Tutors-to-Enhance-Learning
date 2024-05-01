@@ -21,10 +21,16 @@ padding-bottom:20px;
 
 
 .circle-btn{
-    height: 102px;
-    width: 102px;
-    border-radius: 50%;
-    background-color: red;
+    padding: 30px;
+    border-radius: 90px;
+    background-color: plum;
+    vertical-align: central;
+    align-items: center;
+    position: sticky;
+    text-align: center;
+    margin:auto;
+    top:10px
+   
 
 }
 
@@ -52,9 +58,57 @@ min-height: 300px;
     
 }
 
+
 #subject{
 
 padding-top:35%;
+padding-bottom:50px;
+margin-bottom: 10px;
+
+}
+
+
+
+.border-btn{
+
+    border-color: black;
+    padding: 35px;
+    
+    }
+
+
+.row2>* {
+    flex-shrink: 0;
+    width: 115%;
+    max-width: 130%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+    text-align: center;
+}
+
+.border-btn2{
+
+    border-color: black;
+    padding: 20px;
+    
+    }
+
+.top {
+
+top:23px;
+
+}
+
+.pad {
+
+padding: 20px;
+
+}
+
+.pad10{
+
+padding-top: 10px;
 
 
 }
