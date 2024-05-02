@@ -141,7 +141,8 @@ def signup():
         cursor.execute(f"INSERT INTO `users`(`name` , `email`, `password`, `gender`,`educational_level`,`subject`,`role`,`dob`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}','{role}','{date}')")             
         cursor.close()
         get_db().commit()
-    return redirect("signin-page.html.jinja")
+        redirect("signin-page.html.jinja")
+    return render_template("signup.html.jinja")
 
 
 @app.route("/match", methods= ["GET", 'POST'])  
