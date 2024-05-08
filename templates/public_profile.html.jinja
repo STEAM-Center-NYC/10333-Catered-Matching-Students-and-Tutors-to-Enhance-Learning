@@ -78,14 +78,18 @@ https://templatemo.com/tm-586-scholar
             <p>{{result['email']}}</p>
           </div>
 
-          <ul class="nav nav-pills nav-stacked">
-
-
-            <li>
-              
-              
-            </li>
-          </ul>
+        
+<form methods = 'GET, POST'>
+<ul class="rate-area">
+	<input type="radio" id="5-star" name="rating" value="1" /><label for="1-star" title="Amazing">1 stars</label>
+	<input type="radio" id="4-star" name="rating" value="2" /><label for="2-star" title="Good">2 stars</label>
+	<input type="radio" id="3-star" name="rating" value="3" /><label for="3-star" title="Average">3 stars</label>
+	<input type="radio" id="2-star" name="rating" value="4" /><label for="4-star" title="Not Good">4 stars</label>
+	<input type="radio" id="1-star" name="rating" value="5" /><label for="5-star" title="Bad">5 star</label>
+</ul>
+<input type="submit" class="form-control btn btn-primary" value="Submit Rating"> 
+</form>
+        
         </div>
       </div>
       <div class="profile-info col-md-9 panel">
@@ -120,8 +124,13 @@ https://templatemo.com/tm-586-scholar
               <p><span>Subject </span>: {{result['subject']}}</p>
             </div>
           </div>
-        </div>
-      </div>
+        </div> 
+       
+         <div class="border pad margin">
+            <h6>Reviews:</h6>
+            <div class></div>
+            </div>
+      </div> 
     </div>
   </div>
   </div>

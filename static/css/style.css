@@ -72,7 +72,7 @@ margin-bottom: 10px;
 .border-btn{
 
     border-color: black;
-    padding: 35px;
+    padding: 25px;
     
     }
 
@@ -110,5 +110,62 @@ padding: 20px;
 
 padding-top: 10px;
 
+
+}
+
+
+.rate-area {
+	float: left;
+	border-style: none;
+}
+
+.rate-area:not(:checked) > input {
+	position: absolute;
+	top: -9999px;
+	clip: rect(0, 0, 0, 0);
+}
+
+.rate-area:not(:checked) > label {
+	float: right;
+	width: 0.8em;
+	overflow: hidden;
+	white-space: nowrap;
+	cursor: pointer;
+	font-size: 180%;
+	color: lightgrey;
+}
+
+.rate-area:not(:checked) > label:before {
+	content: "★";
+}
+
+.rate-area > input:checked ~ label {
+	color: gold;
+}
+
+.rate-area:not(:checked) > label:hover,
+.rate-area:not(:checked) > label:hover ~ label {
+	color: gold;
+}
+
+.rate-area > input:checked + label:hover,
+.rate-area > input:checked + label:hover ~ label,
+.rate-area > input:checked ~ label:hover,
+.rate-area > input:checked ~ label:hover ~ label,
+.rate-area > label:hover ~ input:checked ~ label {
+	color: gold;
+}
+
+.comment {
+border: 1px;
+border-color: black;
+
+
+
+}
+
+.margin{
+
+margin-top: 20px;
 
 }

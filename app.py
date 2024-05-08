@@ -194,6 +194,12 @@ def public_profile(id):
     cursor.execute(f'SELECT * FROM `users` WHERE `id` = {id}')
     result = cursor.fetchone()
     cursor.close()
+    if request.method == 'POST':
+        rating = request.form['rating']
+        cursor = get_db().cursor()
+        cursor.execute(f"UPDATE users SET rating = '{rating}' WHERE id = {id}")
+        cursor.close() 
+
     return render_template("public_profile.html.jinja", result = result)
 
 
