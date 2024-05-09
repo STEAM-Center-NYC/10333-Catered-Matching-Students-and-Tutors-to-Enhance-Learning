@@ -194,10 +194,12 @@ def public_profile(id):
     cursor.execute(f'SELECT * FROM `users` WHERE `id` = {id}')
     result = cursor.fetchone()
     cursor.close()
+    user = flask_login.current_user
     if request.method == 'POST':
         rating = request.form['rating']
+        review = request.form['review']
         cursor = get_db().cursor()
-        cursor.execute(f"UPDATE users SET rating = '{rating}' WHERE id = {id}")
+        cursor.execute(f"INSERT INTO `ratings`(`profile` ,`user`, `rating` ) VALUES('{id}','{user.id}','{rating}')")
         cursor.close() 
 
     return render_template("public_profile.html.jinja", result = result)
