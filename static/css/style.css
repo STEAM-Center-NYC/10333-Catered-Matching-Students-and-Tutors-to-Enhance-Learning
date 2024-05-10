@@ -178,3 +178,11 @@ min-width: 205px;
 
 
 }
+
+.border2{
+border-width: 2px;
+border-left: none;
+border-right: none;
+border-color: grey;
+
+}

@@ -22,8 +22,8 @@
   <link rel="stylesheet" href="/static/css/owl.css">
   <link rel="stylesheet" href="/static/css/animate.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="/static/css/style.css">
-    
+  <link rel="stylesheet" href="/static/css/style.css">
+
   <!--
 
 TemplateMo 586 Scholar
@@ -53,7 +53,7 @@ https://templatemo.com/tm-586-scholar
 
 
 
-              <li class="scroll-to-section"><a href="/" >Home</a></li>
+              <li class="scroll-to-section"><a href="/">Home</a></li>
               <li class="scroll-to-section"><a href="/contact">Contacts</a></li>
             </ul>
             <a class='menu-trigger'>
@@ -78,31 +78,35 @@ https://templatemo.com/tm-586-scholar
             <p>{{result['email']}}</p>
           </div>
 
-        
-<form method = 'POST'>
-<div>
-<ul class="rate-area">
-	<input type="radio" id="5-star" name="rating" value="5" /><label for="5-star" title="Amazing">1 stars</label>
-	<input type="radio" id="4-star" name="rating" value="4" /><label for="4-star" title="Good">2 stars</label>
-	<input type="radio" id="3-star" name="rating" value="3" /><label for="3-star" title="Average">3 stars</label>
-	<input type="radio" id="2-star" name="rating" value="2" /><label for="2-star" title="Not Good">4 stars</label>
-	<input type="radio" id="1-star" name="rating" value="1" /><label for="1-star" title="Bad">5 star</label>
-</ul>
-</div>
-<div>
-<textarea class="review" name="review">
+
+          <form method='POST'>
+            <div>
+              <ul class="rate-area">
+                <input type="radio" id="5-star" name="rating" value="5" /><label for="5-star" title="Amazing">1
+                  stars</label>
+                <input type="radio" id="4-star" name="rating" value="4" /><label for="4-star" title="Good">2
+                  stars</label>
+                <input type="radio" id="3-star" name="rating" value="3" /><label for="3-star" title="Average">3
+                  stars</label>
+                <input type="radio" id="2-star" name="rating" value="2" /><label for="2-star" title="Not Good">4
+                  stars</label>
+                <input type="radio" id="1-star" name="rating" value="1" /><label for="1-star" title="Bad">5 star</label>
+              </ul>
+            </div>
+            <div>
+              <textarea class="review" name="review" placeholder="Enter Your Reivew Here.">
 
 </textarea>
-</div>
+            </div>
 
-<input type="submit" class="form-control btn btn-primary" value="Submit Rating"> 
-</form>
-        
+            <input type="submit" class="form-control btn btn-primary" value="Submit Review">
+          </form>
+
         </div>
       </div>
       <div class="profile-info col-md-9 panel">
         <div class="bio-graph-heading">
-         
+
         </div>
         <div class="panel-body bio-graph-info border">
           <h1>Bio</h1>
@@ -132,19 +136,25 @@ https://templatemo.com/tm-586-scholar
               <p><span>Subject </span>: {{result['subject']}}</p>
             </div>
           </div>
-        </div> 
-       
-         <div class="border pad margin">
-            <h6>Reviews:</h6>
-            <div class></div>
-            </div>
-      </div> 
+        </div>
+
+        <div class="border pad margin">
+          <h6>Reviews:</h6>
+          {%for x in review%}
+          <div class="border pad">
+            <h6>{{x.name}}:</h6>
+            <p>{{x['review']}}</p>
+          </div> 
+          {%endfor%}
+        </div>
+
+      </div>
     </div>
   </div>
   </div>
   </div>
 
-    
+
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
   <script src="/static/vendor/jquery/jquery.min.js"></script>
