@@ -78,9 +78,10 @@ https://templatemo.com/tm-586-scholar
             <p>{{result['email']}}</p>
           </div>
 
-
+  <div>Rating: {{ "%0.1f" | format(rating['AVG(rating)'])}}</div>
           <form method='POST'>
             <div>
+            <h5 id="review">Submit Review</h5>
               <ul class="rate-area">
                 <input type="radio" id="5-star" name="rating" value="5" /><label for="5-star" title="Amazing">1
                   stars</label>
@@ -142,7 +143,7 @@ https://templatemo.com/tm-586-scholar
           <h6>Reviews:</h6>
           {%for x in review%}
           <div class="border pad">
-            <h6>{{x.name}}:</h6>
+            <h6>{{x.name}}: {{x.rating}} stars</h6>
             <p>{{x['review']}}</p>
           </div> 
           {%endfor%}
