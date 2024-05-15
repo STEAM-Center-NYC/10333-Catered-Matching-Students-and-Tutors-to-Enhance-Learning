@@ -194,7 +194,26 @@ def public_profile(id):
     cursor.execute(f'SELECT * FROM `users` WHERE `id` = {id}')
     result = cursor.fetchone()
     cursor.close()
-    return render_template("public_profile.html.jinja", result = result)
+    cursor = get_db().cursor()
+    cursor.execute(f'SELECT * FROM `ratings` INNER JOIN `users` ON ratings.user = users.id WHERE `profile` = {id} ')
+    review = cursor.fetchall()
+    cursor = get_db().cursor()
+    cursor.execute(f'SELECT AVG(rating) FROM ratings WHERE `profile` = {id}')
+    rating = cursor.fetchone()
+    
+    cursor.close()
+    user = flask_login.current_user
+
+    try:
+        if request.method == 'POST':
+            rating = request.form['rating']
+            review = request.form['review']
+            cursor = get_db().cursor()
+            cursor.execute(f"INSERT INTO `ratings`(`profile` ,`user`, `rating`,`review` ) VALUES('{id}','{user.id}','{rating}','{review}')")
+            cursor.close() 
+    except pymysql.err.IntegrityError:
+        return render_template("review_error.html.jinja", id = id)
+    return render_template("public_profile.html.jinja", result = result , review = review, rating = rating)
 
 
 @app.route('/media/<path:filename>')
