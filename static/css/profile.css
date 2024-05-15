@@ -22,12 +22,6 @@ body {
     text-align: center;
 }
 
-.profile-nav .user-heading.round a  {
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border: 10px solid rgba(255,255,255,0.3);
-    display: inline-block;
-}
 
 .profile-nav .user-heading a img {
     width: 112px;
