@@ -670,7 +670,7 @@ Banner Style
   background-image: url(/static/images/background.png);
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 10px 0px 40px 0px;
+  padding: 10px 0px 0px 0px;
 }
 .main-bannera {
   background-image: url(/static/images/background.png);
