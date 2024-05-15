@@ -236,8 +236,9 @@ def edit():
         education = request.form['education']
         subject = request.form['subject']
         date = request.form['date']
+        linkedin = request.form['linkedin']
         cursor = get_db().cursor()
-        cursor.execute(f"UPDATE `users` SET name = '{name}', email = '{email}', gender = '{gender}', educational_level = '{education}', subject = '{subject}',  dob = '{date}' WHERE `id` = {user.id} ")             
+        cursor.execute(f"UPDATE `users` SET name = '{name}', email = '{email}', gender = '{gender}', educational_level = '{education}', subject = '{subject}',  dob = '{date}', linkedin = '{linkedin}'  WHERE `id` = {user.id} ")             
         cursor.close()
         return redirect("/profile")
     
