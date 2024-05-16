@@ -175,7 +175,7 @@ def profile():
         cursor = get_db().cursor()
         cursor.execute(f"UPDATE users SET profile_img = '{file_name}' WHERE id = {user.id}")          
         cursor.close()
-        return ("File has been uploaded.") 
+        flash("File has been uploaded") 
     cursor = get_db().cursor()
     user = flask_login.current_user
     cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
