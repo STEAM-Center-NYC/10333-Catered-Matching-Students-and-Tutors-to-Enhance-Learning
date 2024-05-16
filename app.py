@@ -233,3 +233,10 @@ def edit():
 def contact():
     return render_template("contact-page.html.jinja")
 
+@app.route("/dm", methods=["GET", "POST"])
+def dm():
+    if request.method == 'POST':
+        message = request.form['Message']
+        cursor = get_db().cursor()
+        cursor.execute(f"INSTER INTO `dm` ('message_text') VALUES({message})WHERE")
+    return render_template("Direct-Message.html.jinja")
