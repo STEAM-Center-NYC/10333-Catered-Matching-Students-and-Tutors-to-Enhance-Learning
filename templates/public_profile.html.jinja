@@ -53,7 +53,7 @@ https://templatemo.com/tm-586-scholar
 
 
 
-              <li class="scroll-to-section"><a href="/">Home</a></li>
+              <li class="scroll-to-section"><a href="/home">Home</a></li>
               <li class="scroll-to-section"><a href="/contact">Contacts</a></li>
             </ul>
             <a class='menu-trigger'>
@@ -77,8 +77,11 @@ https://templatemo.com/tm-586-scholar
             <h1>{{result['name']}}</h1>
                <a href="{{result['linkedin']}}" class="logo border-btn2" id="linkedin">LinkedIn</a>
           </div>
-
+{%if rating['AVG(rating)'] != None %}
   <div>Rating: {{ "%0.1f" | format(rating['AVG(rating)'])}}</div>
+{%else%}
+  <div>Rating: N/A</div>
+{%endif%}
           <form method='POST'>
             <div>
             <h5 id="review">Submit Review</h5>

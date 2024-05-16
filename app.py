@@ -141,7 +141,7 @@ def signup():
         cursor.execute(f"INSERT INTO `users`(`name` , `email`, `password`, `gender`,`educational_level`,`subject`,`role`,`dob`) VALUES('{name}', '{email}', '{password}', '{gender}','{education}' ,'{subject}','{role}','{date}')")             
         cursor.close()
         get_db().commit()
-        redirect("signin-page.html.jinja")
+        return redirect("signin-page.html.jinja")
     return render_template("signup.html.jinja")
 
 
@@ -254,3 +254,9 @@ def edit():
 def contact():
     return render_template("contact-page.html.jinja")
 
+
+@app.route("/logout")
+@flask_login.login_required
+def logout():
+    flask_login.logout_user()
+    return redirect("/signin")
