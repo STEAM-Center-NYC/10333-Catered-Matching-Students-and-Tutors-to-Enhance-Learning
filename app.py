@@ -150,10 +150,6 @@ def signup():
 def matching():
     if request.method == 'POST':
         subjects = request.form['subject']
-        """if subjects == 'Choose...':
-            
-            return render_template("match.html.jinja", tutor_list = results2)
-        else:"""
         cursor = get_db().cursor()
         cursor.execute(f'SELECT * FROM `users` WHERE `subject` = "{subjects}" AND `role` = "tutor"')
         results = cursor.fetchall()
