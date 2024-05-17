@@ -233,10 +233,15 @@ def edit():
 def contact():
     return render_template("contact-page.html.jinja")
 
-@app.route("/dm", methods=["GET", "POST"])
-def dm():
+@app.route("/dm/<id>", methods=["GET", "POST"])
+def dm(id):
+    cursor = get_db().cursor()
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = {id}')
+    result = cursor.fetchone()
+    cursor.close()
     if request.method == 'POST':
+        user = flask_login.current_user
         message = request.form['Message']
         cursor = get_db().cursor()
-        cursor.execute(f"INSTER INTO `dm` ('message_text') VALUES({message})WHERE")
-    return render_template("Direct-Message.html.jinja")
+        cursor.execute(f"INSERT INTO `dm` ('message_text', 'sender_id', 'receiver_id') VALUES('{message}','{user.id}','{result['id']}')")
+    return render_template("Direct-Message.html.jinja", result = result)
