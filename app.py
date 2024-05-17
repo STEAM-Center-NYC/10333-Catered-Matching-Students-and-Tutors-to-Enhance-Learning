@@ -58,7 +58,9 @@ def load_user(user_id):
     
     return User(result["id"], result["email"],result['dob'],result['gender'],result['subject'],result['educational_level'],result['role'],result['name'])
 
-
+@login_manager.unauthorized_handler
+def unauthorized():
+    return render_template("unauthorized_error.html.jinja")
 
 
 class UploadFileForm(FlaskForm):
@@ -256,3 +258,4 @@ def contact():
 def logout():
     flask_login.logout_user()
     return redirect("/signin")
+
