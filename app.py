@@ -8,6 +8,7 @@ from flask_wtf import FlaskForm
 from wtforms import FileField,SubmitField
 from werkzeug.utils import secure_filename
 import os
+import werkzeug.exceptions
 
 
 
@@ -211,6 +212,8 @@ def public_profile(id):
             cursor.close() 
     except pymysql.err.IntegrityError:
         return render_template("review_error.html.jinja", id = id)
+    except werkzeug.exceptions.BadRequestKeyError:
+        flash("Please Fill Out The Form Before Submitting")
     return render_template("public_profile.html.jinja", result = result , review = review, rating = rating)
 
 
