@@ -371,7 +371,7 @@ Header Style
 
 .header-area .main-nav ul.nav {
   border-radius: 0px 0px 25px 25px;
-  flex-basis: 100%;
+  flex-basis: 63%;
   margin-right: 0px;
   justify-content: right;
   -webkit-transition: all 0.3s ease 0s;

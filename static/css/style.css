@@ -183,6 +183,7 @@
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
+    bottom:6px;
   }
   
   .action .profile img {

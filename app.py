@@ -98,12 +98,16 @@ def home():
     cursor.execute('SELECT * FROM `users` WHERE `role` = "tutor"')
     result = cursor.fetchall()
     cursor.close()
-    return render_template("index-page.html.jinja", result =result)
+    cursor = get_db().cursor()
+    user = flask_login.current_user
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
+    result2 = cursor.fetchone()
+    cursor.close() 
+    return render_template("index-page.html.jinja", result =result, user = result2)
 
 
 @app.route("/", methods= ["GET", 'POST'])
 def landing():
-    user = flask_login.current_user
     cursor = get_db().cursor()
     user = flask_login.current_user
     cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')

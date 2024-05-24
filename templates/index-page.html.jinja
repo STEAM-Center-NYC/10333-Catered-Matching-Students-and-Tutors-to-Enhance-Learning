@@ -67,14 +67,16 @@ https://templatemo.com/tm-586-scholar
 
 
               <a href='/match' class="circle-btn mx-auto ">Find Match</a>
-              <li class="scroll-to-section border-btn "><a href="/contact">Contacts</a></li>
-              <li class="scroll-to-section border-btn"><a href="/profile" class="">Profile</a></li>
-              <li class="scroll-to-section border-btn"><a href="/logout" class="">Logout</a></li>
+
 
             </ul>
-            <div class="action">
+            
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a>            
+       <div class="action">
               <div class="profile" onclick="menuToggle();">
-                <img src=" />
+                <img src="/media/{{user['profile_img']}}"/>
               </div>
               <div class="menu">
                 <h3>Someone Famous<br /><span>Website Designer</span></h3>
@@ -90,10 +92,6 @@ https://templatemo.com/tm-586-scholar
                 </ul>
               </div>
             </div>
-
-            <a class='menu-trigger'>
-              <span>Menu</span>
-            </a>
             <!-- ***** Menu End ***** -->
           </nav>
         </div>
