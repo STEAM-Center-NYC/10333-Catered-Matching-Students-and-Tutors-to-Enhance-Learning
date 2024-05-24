@@ -65,14 +65,31 @@ https://templatemo.com/tm-586-scholar
             <!-- ***** Serach Start ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav top">
-
-
-              <li class="scroll-to-section"><a href="/home" class="">Home</a></li>
-              <li class="scroll-to-section"><a href="/contact">Contacts</a></li>
             </ul>
             <a class='menu-trigger'>
               <span>Menu</span>
             </a>
+            <div class="action">
+              <div class="profile" onclick="menuToggle();">
+               {%if result['profile_img'] == none%} 
+               <img src="/media/{{result['profile_img']}}"/>
+               {%else%}
+               <img src="/media/profile.png"/>
+              {%endif%}
+              </div>
+              <div class="menu">
+                <h3>Someone Famous<br /><span>Website Designer</span></h3>
+                <ul>
+                  <li>
+                    <img src="/static/images/user.png" /><a href="/profile">My profile</a>
+                  </li>
+    
+                  <li><img src="/static/images/question.png" /><a href="/contact">Contact Us</a></li>
+                  <li>
+                    <img src="/static/images/logout.png" /><a href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </div>
             <!-- ***** Menu End ***** -->
           </nav>
         </div>
@@ -176,7 +193,12 @@ https://templatemo.com/tm-586-scholar
   <script src="/static/js/owl-carousel.js"></script>
   <script src="/static/js/counter.js"></script>
   <script src="/static/js/custom.js"></script>
-
+<script>
+  function menuToggle() {
+    const toggleMenu = document.querySelector(".menu");
+    toggleMenu.classList.toggle("active");
+  }
+</script>
 </body>
 
 </html>

@@ -267,7 +267,12 @@ def edit():
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
-    return render_template("contact-page.html.jinja")
+    cursor = get_db().cursor()
+    user = flask_login.current_user
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
+    result2 = cursor.fetchone()
+    cursor.close() 
+    return render_template("contact-page.html.jinja", user = result2)
 
 
 @app.route("/logout")
