@@ -176,8 +176,12 @@ def matching():
         cursor.execute(f'SELECT * FROM `tutors`')
         results = cursor.fetchall()
         cursor.close()
-
-    return render_template("match.html.jinja", tutor_list = results)
+    cursor = get_db().cursor()
+    user = flask_login.current_user
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
+    result = cursor.fetchone()
+    cursor.close() 
+    return render_template("match.html.jinja", tutor_list = results, result = result)
 
 @app.route("/profile", methods=["GET","POST"])
 @flask_login.login_required
