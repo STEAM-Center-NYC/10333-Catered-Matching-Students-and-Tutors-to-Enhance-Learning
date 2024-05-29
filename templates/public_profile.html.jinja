@@ -71,7 +71,7 @@ https://templatemo.com/tm-586-scholar
                 <h3>Someone Famous<br /><span>Website Designer</span></h3>
                 <ul>
                   <li>
-                    <img src="/static/images/user.png" /><a href="/profile">My profile</a>
+                    <img src="/static/images/user.png" /><a href="/profile">My Profile</a>
                   </li>
     
                   <li><img src="/static/images/question.png" /><a href="/contact">Contact Us</a></li>
@@ -112,11 +112,13 @@ https://templatemo.com/tm-586-scholar
             <h1>{{result['name']}}</h1>
                <a href="{{result['linkedin']}}" class="logo border-btn2" id="linkedin">LinkedIn</a>
           </div>
+          <a class="btn btn-info" href = "/dm/{{result['id']}}">Direct Message</a>
 {%if rating['AVG(rating)'] != None %}
   <div>Rating: {{ "%0.1f" | format(rating['AVG(rating)'])}}</div>
 {%else%}
   <div>Rating: N/A</div>
 {%endif%}
+
           <form method='POST'>
             <div>
             <h5 id="review">Submit Review</h5>

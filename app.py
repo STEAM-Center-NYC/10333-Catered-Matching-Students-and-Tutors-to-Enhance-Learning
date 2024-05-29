@@ -295,5 +295,5 @@ def dm(id):
         user = flask_login.current_user
         message = request.form['Message']
         cursor = get_db().cursor()
-        cursor.execute(f"INSERT INTO `dm` ('message_text', 'sender_id', 'receiver_id') VALUES('{message}','{user.id}','{result['id']}')")
+        cursor.execute(f"INSERT INTO `dm` (`message_text`, `sender_id`, `receiver_id`) VALUES('{message}','{user.id}','{result['id']}')")
     return render_template("Direct-Message.html.jinja", result = result)
