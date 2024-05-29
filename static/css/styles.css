@@ -70,7 +70,8 @@ body {
 }
 
 .someclass {
-    background-image: url(/static/images/banner-bg.jpg)}
+    background-image: url(/static/images/banner-bg.jpg)
+}
 
 .button {
     border: none;
@@ -130,6 +131,8 @@ body {
 .chat-messages {
     height: 23em;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
 }
 
 .chat-messages::-webkit-scrollbar {
@@ -162,9 +165,11 @@ body {
 
 .blue-bg {
     background-color: #1c9bef;
+    
 }
 .gray-bg {
     background-color: #3d5365;
+    align-self: flex-end;
 }
 
 .chat-input-form {
@@ -196,3 +201,4 @@ body {
     margin: 2.5em auto;
 
 }
+
