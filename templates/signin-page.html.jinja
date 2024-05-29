@@ -54,8 +54,16 @@ background-image: url('/static/images/banner-bg.jpg')};
   </header>
 
 
-<body class="bg-primary bg-opacity-25">
-    <section class="d-flex flex-column justify-content-center align-items-center padding-top3">
+<body class="bg-primary bg-opacity-25"> 
+ {%with messages = get_flashed_messages()%}
+  {%for message in messages%}
+  <div class="alert alert-primary alert-dismissible fade show" role="alert">
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <h3>{{ message }}</h3>
+  </div>
+  {%endfor%}
+  {%endwith%}
+    <section class="d-flex flex-column justify-content-center align-items-center">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 mx-auto rounded shadow bg-white">

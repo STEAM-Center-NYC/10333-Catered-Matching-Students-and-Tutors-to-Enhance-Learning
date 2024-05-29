@@ -23,7 +23,9 @@
   <link rel="stylesheet" href="/static/css/animate.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/static/css/style.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+    crossorigin="anonymous" />
   <!--
 
 TemplateMo 586 Scholar
@@ -52,19 +54,48 @@ https://templatemo.com/tm-586-scholar
             <ul class="nav top">
 
 
-
-              <li class="scroll-to-section"><a href="/home">Home</a></li>
-              <li class="scroll-to-section"><a href="/contact">Contacts</a></li>
             </ul>
             <a class='menu-trigger'>
               <span>Menu</span>
             </a>
+          
+       <div class="action">
+              <div class="profile" onclick="menuToggle();">
+                {%if result['profile_img'] == none%} 
+               <img src="/media/profile.png"/>   
+               {%else%}
+               <img src="/media/{{result['profile_img']}}"/>
+              {%endif%}
+              </div>
+              <div class="menu">
+                <h3>Someone Famous<br /><span>Website Designer</span></h3>
+                <ul>
+                  <li>
+                    <img src="/static/images/user.png" /><a href="/profile">My profile</a>
+                  </li>
+    
+                  <li><img src="/static/images/question.png" /><a href="/contact">Contact Us</a></li>
+                  <li>
+                    <img src="/static/images/logout.png" /><a href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
             <!-- ***** Menu End ***** -->
           </nav>
         </div>
       </div>
     </div>
   </header>
+  
+  {%with messages = get_flashed_messages()%}
+  {%for message in messages%}
+  <div class="alert alert-primary alert-dismissible fade show" role="alert">
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <h3>{{ message }}</h3>
+  </div>
+  {%endfor%}
+  {%endwith%}
 
   <div class="container bootstrap snippets bootdey">
     <div class="row">
@@ -72,7 +103,11 @@ https://templatemo.com/tm-586-scholar
         <div class="panel">
           <div class="user-heading round">
             <a href="#">
-              <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                {%if result['profile_img'] == none%} 
+               <img src="/media/{{result['profile_img']}}"/>
+               {%else%}
+               <img src="/media/profile.png"/>
+              {%endif%}
             </a>
             <h1>{{result['name']}}</h1>
                <a href="{{result['linkedin']}}" class="logo border-btn2" id="linkedin">LinkedIn</a>
@@ -161,12 +196,18 @@ https://templatemo.com/tm-586-scholar
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-  <script src="/static/vendor/jquery/jquery.min.js"></script>
-  <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/static/js/isotope.min.js"></script>
-  <script src="/static/js/owl-carousel.js"></script>
-  <script src="/static/js/counter.js"></script>
-  <script src="/static/js/custom.js"></script>
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/isotope.min.js"></script>
+<script src="/static/js/owl-carousel.js"></script>
+<script src="/static/js/counter.js"></script>
+<script src="/static/js/custom.js"></script>
+<script>
+  function menuToggle() {
+    const toggleMenu = document.querySelector(".menu");
+    toggleMenu.classList.toggle("active");
+  }
+</script>
 </body>
 
 </html>

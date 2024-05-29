@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
 
-    <title></title>
+  <title></title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="/static/css/fontawesome.css">
-    <link rel="stylesheet" href="/static/css/templatemo-scholar.css">
-    <link rel="stylesheet" href="/static/css/owl.css">
-    <link rel="stylesheet" href="/static/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="/static/css/style.css">
-
-<!--
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="/static/css/fontawesome.css">
+  <link rel="stylesheet" href="/static/css/templatemo-scholar.css">
+  <link rel="stylesheet" href="/static/css/owl.css">
+  <link rel="stylesheet" href="/static/css/animate.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+    crossorigin="anonymous" />
+  <!--
 
 TemplateMo 586 Scholar
 
 https://templatemo.com/tm-586-scholar
 
 -->
-  </head>
+</head>
 
 <body>
 
@@ -48,34 +51,51 @@ https://templatemo.com/tm-586-scholar
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="/home" class="logo  pad">
-                        <h1>Tutoria</h1>
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Serach Start ***** -->
-                
-                    <!-- ***** Serach Start ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      
-                      
-                      <a href='/match' class="circle-btn mx-auto ">Find Match</a>
-                      <li class="scroll-to-section border-btn "><a href="/contact">Contact Us</a></li>
-                      <li class="scroll-to-section border-btn"><a href="/profile" class="">Profile</a></li>
-                      <li class="scroll-to-section border-btn"><a href="/logout" class="">Logout</a></li>
-                      
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="/home" class="logo  pad">
+              <h1>Tutoria</h1>
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Serach Start ***** -->
+
+            <!-- ***** Serach Start ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+
+
+              <a href='/match' class="circle-btn mx-auto ">Find Match</a>
+
+
+            </ul>
+            
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a>            
+       <div class="action">
+              <div class="profile" onclick="menuToggle();">
+                <img src="/media/{{user['profile_img']}}"/>
+              </div>
+              <div class="menu">
+                <h3>Someone Famous<br /><span>Website Designer</span></h3>
+                <ul>
+                  <li>
+                    <img src="/static/images/user.png" /><a href="/profile">My profile</a>
+                  </li>
+    
+                  <li><img src="/static/images/question.png" /><a href="/contact">Contact Us</a></li>
+                  <li>
+                    <img src="/static/images/logout.png" /><a href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </div>
             </div>
+            <!-- ***** Menu End ***** -->
+          </nav>
         </div>
+      </div>
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
@@ -84,14 +104,14 @@ https://templatemo.com/tm-586-scholar
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          
+
         </div>
       </div>
     </div>
   </div>
 
 
- 
+
 
   <div class="section events" id="events">
     <div class="container">
@@ -103,55 +123,62 @@ https://templatemo.com/tm-586-scholar
           </div>
         </div>
 
-{% for x in result %}
-  <div class="col-lg-12 col-md-6 pad">
-    <div class="item">
-      <div class="row">
-        <div class="col-lg-3">
-          <div class="image">
-            <img src="/media/{{x['profile_img']}}" alt="Profile Image" class="profile-img">
+        {% for x in result %}
+        <div class="col-lg-12 col-md-6">
+          <div class="item">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="image">
+                  <img src="/media/{{x['profile_img']}}" alt="Profile Image" class="profile-img">
+                </div>
+              </div>
+              <div class="col-lg-9">
+                <ul>
+                  <li>
+                    <span class="category">{{x['name']}}</span>
+                    <h4>Subject: {{x['subject']}}</h4>
+                  </li>
+                  <li>
+                    <span>Email</span>
+                    <h6>{{x['email']}}</h6>
+                  </li>
+                  <li>
+                    <span></span>
+                    <h6></h6>
+                  </li>
+                  <li>
+                    <span>Education</span>
+                    <h6>{{x['educational_level']}}</h6>
+                  </li>
+                </ul>
+                <a href="/profile/{{x['id']}}"><i class="fa fa-angle-right"></i></a>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-lg-9">
-          <ul>
-            <li>
-              <span class="category">{{x['name']}}</span>
-              <h4>Subject: {{x['subject']}}</h4>
-            </li>
-            <li>
-              <span>Email</span>
-              <h6>{{x['email']}}</h6>
-            </li>
-            <li>
-              <span></span>
-              <h6></h6>
-            </li>
-            <li>
-              <span>Education</span>
-              <h6>{{x['educational_level']}}</h6>
-            </li>
-          </ul>
-          <a href="/profile/{{x['id']}}"><i class="fa fa-angle-right"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endfor %}
+        {% endfor %}
 
 </body>
+
 </html>
 
 
 
 
-  <!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
-  <script src="/static/vendor/jquery/jquery.min.js"></script>
-  <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/static/js/isotope.min.js"></script>
-  <script src="/static/js/owl-carousel.js"></script>
-  <script src="/static/js/counter.js"></script>
-  <script src="/static/js/custom.js"></script>
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/isotope.min.js"></script>
+<script src="/static/js/owl-carousel.js"></script>
+<script src="/static/js/counter.js"></script>
+<script src="/static/js/custom.js"></script>
+<script>
+  function menuToggle() {
+    const toggleMenu = document.querySelector(".menu");
+    toggleMenu.classList.toggle("active");
+  }
+</script>
+</body>
 
-  </body>
 </html>

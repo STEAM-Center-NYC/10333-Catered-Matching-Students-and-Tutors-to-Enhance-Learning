@@ -48,33 +48,48 @@ https://templatemo.com/tm-586-scholar
 
   <header class="header-area header-sticky">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="/home" class="logo  pad">
-                        <h1>Tutoria</h1>
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Serach Start ***** -->
-                
-                    <!-- ***** Serach Start ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      
-                      
-                      <li class="scroll-to-section border-btn "><a href="/home">Home</a></li>
-                      <li class="scroll-to-section border-btn"><a href="/contact" class="">Contact Us</a></li>
-                      <li class="scroll-to-section border-btn"><a href="/logout" class="">Logout</a></li>
-                      
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="/home" class="logo border-btn2">
+              <h1>Tutoria</h1>
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Serach Start ***** -->
+
+            <!-- ***** Serach Start ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav top">
+
+            </ul>
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a><div class="action">
+              <div class="profile" onclick="menuToggle();">
+               {%if result['profile_img'] == none%} 
+               <img src="/media/profile.png"/>   
+               {%else%}
+               <img src="/media/{{result['profile_img']}}"/>
+              {%endif%}
+              </div>
+              <div class="menu">
+                <h3>Someone Famous<br /><span>Website Designer</span></h3>
+                <ul>
+                  <li>
+                    <img src="/static/images/user.png" /><a href="/profile">My profile</a>
+                  </li>
+    
+                  <li><img src="/static/images/question.png" /><a href="/contact">Contact Us</a></li>
+                  <li>
+                    <img src="/static/images/logout.png" /><a href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            <!-- ***** Menu End ***** -->
+          </nav>
         </div>
+      </div>
     </div>
   </header>
 
@@ -144,6 +159,7 @@ https://templatemo.com/tm-586-scholar
           </div>
         </div>
         <a class="btn btn-success" href="/edit">Edit</a>
+        <a class="btn btn-info" href = "/dm/{{result['id']}}">Direct Message</a>
       </div>
     </div>
   </div>
@@ -152,13 +168,18 @@ https://templatemo.com/tm-586-scholar
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-  <script src="/static/vendor/jquery/jquery.min.js"></script>
-  <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/static/js/isotope.min.js"></script>
-  <script src="/static/js/owl-carousel.js"></script>
-  <script src="/static/js/counter.js"></script>
-  <script src="/static/js/custom.js"></script>
-
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/isotope.min.js"></script>
+<script src="/static/js/owl-carousel.js"></script>
+<script src="/static/js/counter.js"></script>
+<script src="/static/js/custom.js"></script>
+<script>
+  function menuToggle() {
+    const toggleMenu = document.querySelector(".menu");
+    toggleMenu.classList.toggle("active");
+  }
+</script>
 </body>
 
 </html>

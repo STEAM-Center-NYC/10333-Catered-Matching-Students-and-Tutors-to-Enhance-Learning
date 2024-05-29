@@ -8,6 +8,7 @@ from flask_wtf import FlaskForm
 from wtforms import FileField,SubmitField
 from werkzeug.utils import secure_filename
 import os
+import werkzeug.exceptions
 
 
 
@@ -58,7 +59,9 @@ def load_user(user_id):
     
     return User(result["id"], result["email"],result['dob'],result['gender'],result['subject'],result['educational_level'],result['role'],result['name'])
 
-
+@login_manager.unauthorized_handler
+def unauthorized():
+    return render_template("unauthorized_error.html.jinja")
 
 
 class UploadFileForm(FlaskForm):
@@ -95,33 +98,46 @@ def home():
     cursor.execute('SELECT * FROM `users` WHERE `role` = "tutor"')
     result = cursor.fetchall()
     cursor.close()
-    return render_template("index-page.html.jinja", result =result)
+    cursor = get_db().cursor()
+    user = flask_login.current_user
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
+    result2 = cursor.fetchone()
+    cursor.close() 
+    return render_template("index-page.html.jinja", result =result, user = result2)
 
 
 @app.route("/", methods= ["GET", 'POST'])
 def landing():
-
-    return render_template("landing-page.html.jinja")
+    cursor = get_db().cursor()
+    user = flask_login.current_user
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
+    result = cursor.fetchone()
+    cursor.close() 
+    return render_template("landing-page.html.jinja", result = result)
 
 
 
 @app.route('/signin', methods = ['GET','POST'])
 def signin():
-    if request.method == 'POST':
-        email = request.form["email"]
-        password = request.form["password"]
-        cursor = get_db().cursor()
-        cursor.execute(f'SELECT * FROM `users` WHERE `email` = "{email}" ')
-        result = cursor.fetchone()
-        cursor.close()
-        get_db().commit()
+    try:
+        if request.method == 'POST':
+            email = request.form["email"]
+            password = request.form["password"]
+            cursor = get_db().cursor()
+            cursor.execute(f'SELECT * FROM `users` WHERE `email` = "{email}" ')
+            result = cursor.fetchone()
+            cursor.close()
+            get_db().commit()
 
-        if password == result["password"]:
-            user = load_user(result['id'])
-            flask_login.login_user(user)
-            return redirect('/home')
-    if flask_login.current_user.is_authenticated:
-        return redirect("/home")
+            if password == result["password"]:
+                user = load_user(result['id'])
+                flask_login.login_user(user)
+                return redirect('/home')
+            if flask_login.current_user.is_authenticated:
+                return redirect("/home")
+    except TypeError:
+        flash("Incorrect Username or Password")
+    
     return render_template("signin-page.html.jinja")
 
 
@@ -160,8 +176,12 @@ def matching():
         cursor.execute(f'SELECT * FROM `tutors`')
         results = cursor.fetchall()
         cursor.close()
-
-    return render_template("match.html.jinja", tutor_list = results)
+    cursor = get_db().cursor()
+    user = flask_login.current_user
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
+    result = cursor.fetchone()
+    cursor.close() 
+    return render_template("match.html.jinja", tutor_list = results, result = result)
 
 @app.route("/profile", methods=["GET","POST"])
 @flask_login.login_required
@@ -202,13 +222,16 @@ def public_profile(id):
 
     try:
         if request.method == 'POST':
-            rating = request.form['rating']
+            ratings = request.form['rating']
             review = request.form['review']
             cursor = get_db().cursor()
-            cursor.execute(f"INSERT INTO `ratings`(`profile` ,`user`, `rating`,`review` ) VALUES('{id}','{user.id}','{rating}','{review}')")
+            cursor.execute(f"INSERT INTO `ratings`(`profile` ,`user`, `rating`,`review` ) VALUES('{id}','{user.id}','{ratings}','{review}')")
             cursor.close() 
     except pymysql.err.IntegrityError:
         return render_template("review_error.html.jinja", id = id)
+    except werkzeug.exceptions.BadRequestKeyError:
+        flash("Please Fill Out The Form Before Submitting")
+    
     return render_template("public_profile.html.jinja", result = result , review = review, rating = rating)
 
 
@@ -248,7 +271,12 @@ def edit():
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
-    return render_template("contact-page.html.jinja")
+    cursor = get_db().cursor()
+    user = flask_login.current_user
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
+    result2 = cursor.fetchone()
+    cursor.close() 
+    return render_template("contact-page.html.jinja", user = result2)
 
 
 @app.route("/logout")
@@ -256,3 +284,16 @@ def contact():
 def logout():
     flask_login.logout_user()
     return redirect("/signin")
+
+@app.route("/dm/<id>", methods=["GET", "POST"])
+def dm(id):
+    cursor = get_db().cursor()
+    cursor.execute(f'SELECT * FROM `users` WHERE `id` = {id}')
+    result = cursor.fetchone()
+    cursor.close()
+    if request.method == 'POST':
+        user = flask_login.current_user
+        message = request.form['Message']
+        cursor = get_db().cursor()
+        cursor.execute(f"INSERT INTO `dm` ('message_text', 'sender_id', 'receiver_id') VALUES('{message}','{user.id}','{result['id']}')")
+    return render_template("Direct-Message.html.jinja", result = result)
