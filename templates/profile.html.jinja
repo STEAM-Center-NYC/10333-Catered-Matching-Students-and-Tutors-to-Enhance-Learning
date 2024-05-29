@@ -62,13 +62,30 @@ https://templatemo.com/tm-586-scholar
             <!-- ***** Menu Start ***** -->
             <ul class="nav top">
 
-
-              <li class="scroll-to-section"><a href="/home" class="">Home</a></li>
-              <li class="scroll-to-section"><a href="/contact">Contacts</a></li>
             </ul>
             <a class='menu-trigger'>
               <span>Menu</span>
-            </a>
+            </a><div class="action">
+              <div class="profile" onclick="menuToggle();">
+               {%if result['profile_img'] == none%} 
+               <img src="/media/profile.png"/>   
+               {%else%}
+               <img src="/media/{{result['profile_img']}}"/>
+              {%endif%}
+              </div>
+              <div class="menu">
+                <h3>Someone Famous<br /><span>Website Designer</span></h3>
+                <ul>
+                  <li>
+                    <img src="/static/images/user.png" /><a href="/profile">My profile</a>
+                  </li>
+    
+                  <li><img src="/static/images/question.png" /><a href="/contact">Contact Us</a></li>
+                  <li>
+                    <img src="/static/images/logout.png" /><a href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </div>
             <!-- ***** Menu End ***** -->
           </nav>
         </div>
@@ -142,6 +159,7 @@ https://templatemo.com/tm-586-scholar
           </div>
         </div>
         <a class="btn btn-success" href="/edit">Edit</a>
+        <a class="btn btn-info" href = "/dm/{{result['id']}}">Direct Message</a>
       </div>
     </div>
   </div>
@@ -150,13 +168,18 @@ https://templatemo.com/tm-586-scholar
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-  <script src="/static/vendor/jquery/jquery.min.js"></script>
-  <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/static/js/isotope.min.js"></script>
-  <script src="/static/js/owl-carousel.js"></script>
-  <script src="/static/js/counter.js"></script>
-  <script src="/static/js/custom.js"></script>
-
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/isotope.min.js"></script>
+<script src="/static/js/owl-carousel.js"></script>
+<script src="/static/js/counter.js"></script>
+<script src="/static/js/custom.js"></script>
+<script>
+  function menuToggle() {
+    const toggleMenu = document.querySelector(".menu");
+    toggleMenu.classList.toggle("active");
+  }
+</script>
 </body>
 
 </html>
