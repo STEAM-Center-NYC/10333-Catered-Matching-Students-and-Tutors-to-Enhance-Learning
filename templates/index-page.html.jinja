@@ -77,7 +77,12 @@ flex-basis: 63%;
             <ul class="nav flex" style="flex-basis:63%;">
 
 
-              <a href='/match' class="circle-btn mx-auto ">Find Match</a>
+             
+    {% if user.role == 'student' %}
+        <a href='/match' class="circle-btn mx-auto">Find Match</a>
+    {% endif %}
+
+            
 
 
             </ul>

@@ -166,7 +166,7 @@
 }
 
 .image img.profile-img {
-    width: 150px; /* adjust as needed */
+    width: 150x; /* adjust as needed */
     height: 150px; /* adjust as needed */
     object-fit: cover; /* ensures the image covers the container area without stretching */
     border-radius: 50%; /* optional: for circular images */
