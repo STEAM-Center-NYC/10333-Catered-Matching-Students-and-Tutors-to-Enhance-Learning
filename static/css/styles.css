@@ -165,11 +165,11 @@ body {
 
 .blue-bg {
     background-color: #1c9bef;
-    
+      align-self: flex-end;
 }
 .gray-bg {
     background-color: #3d5365;
-    align-self: flex-end;
+  
 }
 
 .chat-input-form {
