@@ -61,14 +61,14 @@ https://templatemo.com/tm-586-scholar
           
        <div class="action">
               <div class="profile" onclick="menuToggle();">
-                {%if result['profile_img'] == none%} 
+              {%if result['profile_img'] == none%} 
                <img src="/media/profile.png"/>   
                {%else%}
                <img src="/media/{{result['profile_img']}}"/>
               {%endif%}
               </div>
               <div class="menu">
-                <h3>Someone Famous<br /><span>Website Designer</span></h3>
+                <h3>{{user.name}}<br /><span>User</span></h3>
                 <ul>
                   <li>
                     <img src="/static/images/user.png" /><a href="/profile">My Profile</a>

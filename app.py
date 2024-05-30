@@ -181,7 +181,7 @@ def matching():
     cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
     result = cursor.fetchone()
     cursor.close() 
-    return render_template("match.html.jinja", tutor_list = results, result = result)
+    return render_template("match.html.jinja", tutor_list = results, result = result, user = user)
 
 @app.route("/profile", methods=["GET","POST"])
 @flask_login.login_required
@@ -201,7 +201,7 @@ def profile():
     cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
     result = cursor.fetchone()
     cursor.close() 
-    return render_template("profile.html.jinja", form=form, result= result)
+    return render_template("profile.html.jinja", form=form, result= result, user = user)
 
 @app.route("/profile/<id>", methods=["GET","POST"])
 @flask_login.login_required
@@ -232,7 +232,7 @@ def public_profile(id):
     except werkzeug.exceptions.BadRequestKeyError:
         flash("Please Fill Out The Form Before Submitting")
     
-    return render_template("public_profile.html.jinja", result = result , review = review, rating = rating)
+    return render_template("public_profile.html.jinja", result = result , review = review, rating = rating, user = user)
 
 
 @app.route('/media/<path:filename>')
@@ -287,13 +287,18 @@ def logout():
 
 @app.route("/dm/<id>", methods=["GET", "POST"])
 def dm(id):
+    user = flask_login.current_user
     cursor = get_db().cursor()
     cursor.execute(f'SELECT * FROM `users` WHERE `id` = {id}')
     result = cursor.fetchone()
     cursor.close()
+    cursor = get_db().cursor()
+    cursor.execute(f'SELECT * FROM `dm` WHERE (`sender_id` = {user.id} AND `receiver_id` = {id}) OR (`sender_id` = {id} AND `receiver_id` = {user.id}) ')
+    result2 = cursor.fetchall()
+    cursor.close()
     if request.method == 'POST':
-        user = flask_login.current_user
         message = request.form['Message']
         cursor = get_db().cursor()
         cursor.execute(f"INSERT INTO `dm` (`message_text`, `sender_id`, `receiver_id`) VALUES('{message}','{user.id}','{result['id']}')")
-    return render_template("Direct-Message.html.jinja", result = result)
+    
+    return render_template("Direct-Message.html.jinja", result = result, user = user, result2 = result2, id = id)
