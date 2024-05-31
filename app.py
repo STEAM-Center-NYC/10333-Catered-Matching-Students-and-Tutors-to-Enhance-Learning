@@ -164,24 +164,49 @@ def signup():
 @app.route("/match", methods= ["GET", 'POST'])  
 @flask_login.login_required
 def matching():
-    if request.method == 'POST':
+    cursor = get_db().cursor()
+    cursor.execute(f'SELECT * FROM `matching` WHERE `student-id` = "{user.id}"')
+    result3 = cursor.fetchone()
+    cursor.close()
+    if request.method == 'POST': 
+        user = flask_login.current_user
         subjects = request.form['subject']
         cursor = get_db().cursor()
         cursor.execute(f'SELECT * FROM `users` WHERE `subject` = "{subjects}" AND `role` = "tutor"')
         results = cursor.fetchall()
         results = random.choice(results)
         cursor.close()
+        if result3['tutor-id'] == None:
+            
+            cursor = get_db().cursor()
+            cursor.execute(f"INSERT INTO `matching`(`student-id`, `tutor-id`) VALUES('{user.id}','{results['id']}')")
+            cursor.close()
+        else:
+            cursor = get_db().cursor()
+            cursor.execute(f"UPDATE matching SET `tutor-id` = '{results['id']}'")
+            cursor.close()
     else:
         cursor = get_db().cursor()
         cursor.execute(f'SELECT * FROM `tutors`')
         results = cursor.fetchall()
         cursor.close()
+    
     cursor = get_db().cursor()
     user = flask_login.current_user
     cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
     result = cursor.fetchone()
     cursor.close() 
-    return render_template("match.html.jinja", tutor_list = results, result = result, user = user)
+    cursor = get_db().cursor()
+    cursor.execute(f"SELECT * FROM `users` WHERE `id` = {result3['tutor-id']}")
+    result4 = cursor.fetchone()
+    cursor.close()
+
+    if result3['tutor-id'] != None:
+        matched = True
+    else:
+        matched = False
+    
+    return render_template("match.html.jinja", tutor_list = results, result = result, user = user, result3 = result3, result4 = result4, matched = matched)
 
 @app.route("/profile", methods=["GET","POST"])
 @flask_login.login_required
