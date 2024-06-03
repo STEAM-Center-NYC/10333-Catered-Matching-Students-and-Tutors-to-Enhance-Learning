@@ -163,7 +163,8 @@ def signup():
 
 @app.route("/match", methods= ["GET", 'POST'])  
 @flask_login.login_required
-def matching():
+def matching():   
+    user = flask_login.current_user
     cursor = get_db().cursor()
     cursor.execute(f'SELECT * FROM `matching` WHERE `student-id` = "{user.id}"')
     result3 = cursor.fetchone()
@@ -176,8 +177,7 @@ def matching():
         results = cursor.fetchall()
         results = random.choice(results)
         cursor.close()
-        if result3['tutor-id'] == None:
-            
+        if result3 == None:
             cursor = get_db().cursor()
             cursor.execute(f"INSERT INTO `matching`(`student-id`, `tutor-id`) VALUES('{user.id}','{results['id']}')")
             cursor.close()
@@ -192,14 +192,15 @@ def matching():
         cursor.close()
     
     cursor = get_db().cursor()
-    user = flask_login.current_user
+
     cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
     result = cursor.fetchone()
     cursor.close() 
-    cursor = get_db().cursor()
-    cursor.execute(f"SELECT * FROM `users` WHERE `id` = {result3['tutor-id']}")
-    result4 = cursor.fetchone()
-    cursor.close()
+    if result3 != None:
+        cursor = get_db().cursor()
+        cursor.execute(f"SELECT * FROM `users` WHERE `id` = {result3['tutor-id']}")
+        result4 = cursor.fetchone()
+        cursor.close()
 
     if result3['tutor-id'] != None:
         matched = True
