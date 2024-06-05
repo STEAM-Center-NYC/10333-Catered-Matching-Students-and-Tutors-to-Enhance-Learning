@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
 
-    <title></title>
+  <title></title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="/static/css/fontawesome.css">
-    <link rel="stylesheet" href="/static/css/templatemo-scholar.css">
-    <link rel="stylesheet" href="/static/css/owl.css">
-    <link rel="stylesheet" href="/static/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="/static/css/style.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="/static/css/fontawesome.css">
+  <link rel="stylesheet" href="/static/css/templatemo-scholar.css">
+  <link rel="stylesheet" href="/static/css/owl.css">
+  <link rel="stylesheet" href="/static/css/animate.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
     crossorigin="anonymous" />
- 
 
 
 
 
-  </head>
+
+</head>
 
 <body class="bg-primary bg-opacity-25">
 
@@ -48,49 +49,49 @@
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="/home" class="logo">
-                        <h1>Tutoria</h1>
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Serach Start ***** -->
-                
-                    <!-- ***** Serach Start ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav" id="flex">
-                
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-           <div class="action">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="/home" class="logo">
+              <h1>Tutoria</h1>
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Serach Start ***** -->
+
+            <!-- ***** Serach Start ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav" id="flex">
+
+            </ul>
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a>
+            <div class="action">
               <div class="profile" onclick="menuToggle();">
-               {%if result['profile_img'] == none%} 
-               <img src="/media/profile.png"/>   
-               {%else%}
-               <img src="/media/{{result['profile_img']}}"/>
-              {%endif%}
+                {%if result['profile_img'] == none%}
+                <img src="/media/profile.png" />
+                {%else%}
+                <img src="/media/{{result['profile_img']}}" />
+                {%endif%}
               </div>
               <div class="menu">
-                <h3>Someone Famous<br /><span>Website Designer</span></h3>
+                <h3>{{user.name}}<br /><span>User</span></h3>
                 <ul>
                   <li>
-                    <img src="/static/images/user.png" /><a href="/profile">My profile</a>
+                    <img src="/static/images/user.png" /><a href="/profile">My Profile</a>
                   </li>
-    
+
                   <li><img src="/static/images/question.png" /><a href="/contact">Contact Us</a></li>
                   <li>
                     <img src="/static/images/logout.png" /><a href="/logout">Logout</a>
                   </li>
                 </ul>
               </div>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
+              <!-- ***** Menu End ***** -->
+          </nav>
         </div>
+      </div>
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
@@ -99,32 +100,38 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9 me-auto ms-auto">
-          
-          <form method="POST">
-            <div class="dropdown">
-              <label for="inlineFormSelectPref">Subject of Need</label>
-                              <select class="d-flex flex-column justify-content-center align-items-center form-select" id="inlineFormSelectPref" name="subject">
-                                  <button selected>Choose...</button>
-                                  <option value="Math">Math</option>
-                                  <option value="Science">Science</option>
-                                  <option value="English">English</option>
-                                  <option value="Social Studies">Social Studies</option>
-                               </div> 
-                                    </select>
-                                    <div class="col-12 padding-top padding-bottom">
-                                    <button type="submit" class="btn btn-info btn-lg">Match</button>
-                                    </div>
-                                    
-                                    
-          </form>  
-          
-          </div>
-          </div>
-          </div>
-          </div>
-          
 
-<div class="events back-img" id="events">
+          <form method="POST">
+            <label for="inlineFormSelectPref">Subject of Need</label>
+            <select class="d-flex flex-column justify-content-center align-items-center form-select"
+              id="inlineFormSelectPref" name="subject">
+              <button selected>Choose...</button>
+              <option value="Math">Math</option>
+              <option value="Science">Science</option>
+              <option value="English">English</option>
+              <option value="Social Studies">Social Studies</option>
+            </select>
+            <div class="col-12 padding-top padding-bottom">
+            {%if matched == True%}
+             <button type="submit" class="btn btn-info btn-lg">Find New Match</button>
+            {%else%}
+            <button type="submit" class="btn btn-info btn-lg">Match</button>
+           {%endif%}
+            </div>
+
+
+          </form>
+
+        
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="events back-img" id="events">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-md-6">
@@ -132,54 +139,55 @@
             <div class="row">
               <div class="col-lg-3">
                 <div class="image">
-                  <img src="/media/{{tutor_list['profile_img']}}" alt="">
+                  <img src="/media/{{result4['profile_img']}}" alt="">
                 </div>
               </div>
               <div class="col-lg-9">
                 <ul>
                   <li>
-                    <span class="category"> {{tutor_list['name']}}</span>
-                    <h4>Subject: {{tutor_list['subject']}}</h4>
-                  </li> 
+                    <span class="category"> {{result4['name']}}</span>
+                    <h4>Subject: {{result4['subject']}}</h4>
+                  </li>
                   <li>
                     <span>Email:</span>
-                    <h6>{{tutor_list['email']}}</h6>
+                    <h6>{{result4['email']}}</h6>
                   </li>
                   <li>
                     <span>Role:</span>
-                    <h6>{{tutor_list['role']}}</h6>
+                    <h6>{{result4['role']}}</h6>
                   </li>
-                 
- 
+
+
                 </ul>
-                <a href="/profile/{{tutor_list['id']}}"><i class="fa fa-angle-right"></i></a>
+                <a href="/profile/{{result4['id']}}"><i class="fa fa-angle-right"></i></a>
               </div>
             </div>
           </div>
         </div>
-        </div>
-        </div>
-        </div>
-        
       </div>
     </div>
   </div>
 
-    
+  </div>
+  </div>
+  </div>
+
+
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-<script src="/static/vendor/jquery/jquery.min.js"></script>
-<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="/static/js/isotope.min.js"></script>
-<script src="/static/js/owl-carousel.js"></script>
-<script src="/static/js/counter.js"></script>
-<script src="/static/js/custom.js"></script>
-<script>
-  function menuToggle() {
-    const toggleMenu = document.querySelector(".menu");
-    toggleMenu.classList.toggle("active");
-  }
-</script>
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/static/js/isotope.min.js"></script>
+  <script src="/static/js/owl-carousel.js"></script>
+  <script src="/static/js/counter.js"></script>
+  <script src="/static/js/custom.js"></script>
+  <script>
+    function menuToggle() {
+      const toggleMenu = document.querySelector(".menu");
+      toggleMenu.classList.toggle("active");
+    }
+  </script>
 
-  </body>
+</body>
+
 </html>

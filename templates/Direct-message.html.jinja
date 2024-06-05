@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width", initial-scale="1.0" />
-        <title>Direct messaging</title>
-        <link rel="stylesheet" href="/static/css/styles.css" />
 
-    </head>
-    <body class="someclass">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" , initial-scale="1.0" />
+    <title>Direct messaging</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
 
+</head>
 
-        </div>
-        <div class="chat-container">
-            <h2 class="chat-header">jforlenza typing...</h2>
+<body class="someclass">
+    <div class="person-selector">
+        <a class="button person-selector-button" id="john-selector" href="/profile/{{id}}">Back</a>
 
-            <div class="chat-messages">
-                <div class="message blue-bg"> 
-                    <div class="message-sender">{{result['']}}</div>
-                    <div class="message-text">Hey John, you said you needed help with some math?</div>
-                    <div class="message-timestamp">12:00 PM</div>
+    </div>
+    <div class="chat-container">
+        <h2 class="chat-header">{{result['name']}}</h2>
+
+        <div class="chat-messages">
+            {%for x in result2%}
+                {%if x.sender_id == user.id%}
+                <div class="message blue-bg">
+                    <div class="message-timestamp">{{x['timestamp']}}</div>
+                    <div class="message-text">{{x['message_text']}}</div>
                 </div>
-                    <div class="message gray-bg">
-                    <div class="message-sender">john</div>
-                    <div class="message-text">Good afternoon Mr. forlenza, yes I do since I've been stuck on one part of the math problem.</div>
+                {%else%}
+                <div class="message gray-bg">
+                    <div class="message-sender">{{x['name']}}</div>
+                    <div class="message-timestamp">{{x['timestamp']}}</div>
+                    <div class="message-text">{{x['timestamp']}}</div>
                 </div>
+                {%endif%}
+            {%endfor%}    
             </div>
-                <form class="chat-input-form" method="POST">
-                    <input type="text" class="chat-input" required placeholder="Type Here, jforlenza..." name="Message"/>
-                    <button type="submit" class="button send-button">Send</button>
-                </form>
-                <button class="button clear-chat-button">Clear Chat</button>
+    <form class="chat-input-form" method="POST">
+        <input type="text" class="chat-input" required placeholder="Type Here, jforlenza..." name="Message" />
+        <button type="submit" class="button send-button">Send</button>
+    </form>
+    </div>
         </div>
-    </body>
+
+
+</body>
 
 </html>
