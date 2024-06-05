@@ -108,12 +108,8 @@ def home():
 
 @app.route("/", methods= ["GET", 'POST'])
 def landing():
-    cursor = get_db().cursor()
-    user = flask_login.current_user
-    cursor.execute(f'SELECT * FROM `users` WHERE `id` = "{user.id}"')
-    result = cursor.fetchone()
-    cursor.close() 
-    return render_template("landing-page.html.jinja", result = result)
+    user = flask_login.current_user  
+    return render_template("landing-page.html.jinja")
 
 
 
